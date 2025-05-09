@@ -6,12 +6,14 @@ using UnityEngine.Timeline;
 public class Player : BaseController
 {
     private Animator playerAnimator;
+    private BoxCollider2D boxCollider2D;
 
     public void Start()
     {
         base.Start();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
     public void Update()
     {
@@ -35,5 +37,10 @@ public class Player : BaseController
         {
             playerAnimator.SetBool("IsJump", true);
         }
+    }
+
+    public void Silde()
+    {
+
     }
 }
