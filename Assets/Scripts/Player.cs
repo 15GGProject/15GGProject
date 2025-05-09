@@ -49,7 +49,7 @@ public class Player : BaseController
     }
 
     //플레어 체력 num값 만큼 증가(-가능)
-    public void playerHpChange(float num)
+    public void PlayerHpChange(float num)
     {
         this.hp += num;
     }
