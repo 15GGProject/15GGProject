@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseController : MonoBehaviour
+public class BaseController : MonoBehaviour, Elemental
 {
     protected Rigidbody2D rigidBody;
     protected SpriteRenderer spriteRenderer;
@@ -74,5 +74,10 @@ public class BaseController : MonoBehaviour
     {
         // x축 자동 이동
         rigidBody.velocity = new Vector2(speed, rigidBody.velocity.y);
+    }
+
+    public void ChangeColor()
+    {
+
     }
 }

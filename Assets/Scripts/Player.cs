@@ -7,6 +7,7 @@ public class Player : BaseController
 {
     private Animator playerAnimator;
     private BoxCollider2D playerBoxCollider2D;
+    Vector2 orignBoxSize;
 
     public void Start()
     {
@@ -14,10 +15,12 @@ public class Player : BaseController
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
         playerBoxCollider2D = GetComponent<BoxCollider2D>();
+        orignBoxSize = playerBoxCollider2D.size;
     }
     public void Update()
     {
         Jump();
+        Silde();
     }
 
     public void FixedUpdate()
@@ -41,10 +44,15 @@ public class Player : BaseController
 
     public void Silde()
     {
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.LeftControl))
+        if (IsGrounded() && Input.GetKey(KeyCode.LeftControl))
         {
             playerAnimator.SetBool("IsSlide", true);
-            //playerBoxCollider2D.size = 
+            playerBoxCollider2D.size = new Vector2(orignBoxSize.x * 1.2f, orignBoxSize.y * 0.5f);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsSlide", false);
+            playerBoxCollider2D.size = orignBoxSize;
         }
     }
 

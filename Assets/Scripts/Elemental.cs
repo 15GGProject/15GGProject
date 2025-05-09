@@ -1,8 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Elemental : MonoBehaviour
+public interface Elemental
 {
+    public void ChangeColor()
+    {
 
+    }
+
+    public void ChangeElemental()
+    {
+
+    }
 }
