@@ -36,7 +36,7 @@ public class Player : BaseController
     }
     public void FixedUpdate()
     {
-        //AutoMove();
+        AutoMove();
     }
 
     public override void Jump()
@@ -106,5 +106,10 @@ public class Player : BaseController
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
+    }
+
+    public float OutSpeed()
+    {
+        return speed;
     }
 }

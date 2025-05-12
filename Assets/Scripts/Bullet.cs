@@ -28,12 +28,16 @@ public class Bullet : MonoBehaviour
     public void BulletAdvance()
     {
         rigidbody2D.velocity = shotDirection * bulletSpeed;
-        //Debug.Log(rigidbody2D.velocity);
+        //Debug.Log("바꾸기 전 : " + rigidbody2D.velocity);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + player.OutSpeed(), rigidbody2D.velocity.y);
+        //Debug.Log("player rigidbody : " + player.GetComponent<Rigidbody2D>().velocity.x);
+        //Debug.Log("바꾼 후 : " + rigidbody2D.velocity);
     }
 
     //총알 방향
     public void SetDirection(Vector2 vector)
     {
+
         shotDirection = vector;
     }
 
