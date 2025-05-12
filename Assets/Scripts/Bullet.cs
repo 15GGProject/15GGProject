@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 
     private Vector2 shotDirection;
 
-    private float bulletSpeed = 15f;
+    private float bulletSpeed = 20f;
     private bool isFire = false;
 
     public void Start()
@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
     public void AdjustAngle(float angle)
     {
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        Debug.Log("총알 로테이션 값 : " + transform.rotation);
+        //Debug.Log("총알 로테이션 값 : " + transform.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
