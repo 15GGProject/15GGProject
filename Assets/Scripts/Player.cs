@@ -83,7 +83,7 @@ public class Player : BaseController
         mousePos.z = 0;
         //Debug.Log(mousePos);
         shotDirection = mousePos - bulletStartPosition.position;
-
+        //Debug.Log("shotDirection : " + shotDirection);
         return shotDirection.normalized;
     }
 
@@ -94,11 +94,11 @@ public class Player : BaseController
         bullet.transform.position = bulletStartPosition.position;
         bullet.SetActive(true);
 
-        Bullet bulletScript = GetComponent<Bullet>();
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
 
         if (bulletScript != null && bullet.activeInHierarchy)
         {
-            bulletScript.SetDirection();
+            bulletScript.SetDirection(vector);
         }
     }
 

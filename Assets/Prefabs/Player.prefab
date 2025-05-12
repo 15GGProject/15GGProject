@@ -65,6 +65,7 @@ Transform:
   m_Children:
   - {fileID: 8964390998736071026}
   - {fileID: 7012051017070135169}
+  - {fileID: 3309378764714018064}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7012083270437052064
@@ -83,8 +84,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   groundCheckPoint: {fileID: 7012051017070135169}
-  bulletStartPosition: {fileID: 0}
-  poolManager: {fileID: 438925661726822062, guid: 7db8ef2cbb766ca4a90b4a558184a344, type: 3}
+  bulletStartPosition: {fileID: 3309378764714018064}
+  poolManager: {fileID: 0}
 --- !u!50 &5418543163249944610
 Rigidbody2D:
   serializedVersion: 4
@@ -100,7 +101,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -157,6 +158,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7334665, y: 1.1065559}
   m_EdgeRadius: 0
+--- !u!1 &4485956231391350445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3309378764714018064}
+  m_Layer: 0
+  m_Name: ShotPovit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3309378764714018064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4485956231391350445}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.396, y: 0.632, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7733446198182106983}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5315577840642108288
 GameObject:
   m_ObjectHideFlags: 0

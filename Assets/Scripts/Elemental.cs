@@ -6,7 +6,7 @@ public class Elemental : MonoBehaviour
 {
     bool isFire = false;
 
-    public void ChangeElemental()
+    public void ChangeElemental(SpriteRenderer spriteRenderer , bool isFire)
     {
 
     }

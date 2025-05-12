@@ -7,16 +7,16 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Player player;
 
     private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2D;
 
     private Vector2 shotDirection;
 
-    private float bulletSpeed = 1000f;
+    private float bulletSpeed = 10f;
 
     public void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        rigidbody = GetComponentInChildren<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     public void Update()
@@ -27,13 +27,14 @@ public class Bullet : MonoBehaviour
     //총알 전진
     public void BulletAdvance()
     {
-        rigidbody.velocity = shotDirection * bulletSpeed;
+        rigidbody2D.velocity = shotDirection * bulletSpeed;
+        //Debug.Log(rigidbody2D.velocity);
     }
 
     //총알 방향
-    public void SetDirection()
+    public void SetDirection(Vector2 vector)
     {
-        shotDirection = player.SetClickDirection();
+        shotDirection = vector;
     }
 
     //총알 속도 증감
@@ -42,12 +43,13 @@ public class Bullet : MonoBehaviour
         bulletSpeed += num;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null)
+        if (collision.name != player.name)
         {
-            //뭐라도 부딪치면 비활성화
-            //gameObject.SetActive(false);
+            //Debug.Log(collision);
+            //플레이어가 아니라면 부딪치면 비활성화
+            gameObject.SetActive(false);
         }
     }
 }
