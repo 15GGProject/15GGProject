@@ -23,7 +23,7 @@ public class BaseController : MonoBehaviour
     {
         //자기 컴포넌트 가져오기
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         jumpCount = OriginJumpCount;
     }

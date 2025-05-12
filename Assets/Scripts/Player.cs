@@ -10,11 +10,14 @@ public class Player : BaseController
     private BoxCollider2D playerBoxCollider2D;
     private Vector2 orignBoxSize;
     [SerializeField] private Transform bulletStartPosition;
+    [SerializeField] private Elemental Elemental;
 
     public PoolManager poolManager;
 
     protected float attackSpeed = 1f;
     protected float attackPower = 3f;
+
+    private bool isFire = false;
 
     public void Start()
     {
@@ -23,22 +26,35 @@ public class Player : BaseController
         playerAnimator.SetBool("IsRun", true);
         playerBoxCollider2D = GetComponent<BoxCollider2D>();
         orignBoxSize = playerBoxCollider2D.size;
+        isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
     }
     public void Update()
     {
+        //스페이스바 로 점프
         Jump();
+
+        //컨트롤 키로 슬라이딩
         Silde();
 
+        //마우스 우클릭으로 공격
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Attack(SetClickDirection());
         }
+
+        //t로 속성 전환
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
+        }
     }
     public void FixedUpdate()
     {
+        //자동이동
         AutoMove();
     }
 
+    //땅에 붙어있으면 점프가능 + 점프 횟수 초기화
     public override void Jump()
     {
         base.Jump();
@@ -53,6 +69,7 @@ public class Player : BaseController
         }
     }
 
+    //땅에 붙어있으면 슬라이딩 가능
     public void Silde()
     {
         if (IsGrounded() && Input.GetKey(KeyCode.LeftControl))
@@ -99,6 +116,8 @@ public class Player : BaseController
         if (bulletScript != null && bullet.activeInHierarchy)
         {
             bulletScript.SetDirection(vector);
+            bulletScript.SetIsFire(isFire);
+            Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(),isFire);
         }
     }
 
@@ -107,9 +126,13 @@ public class Player : BaseController
     {
         attackPower += num;
     }
-
     public float OutSpeed()
     {
         return speed;
+    }
+
+    public bool IsFire()
+    {
+        return isFire;
     }
 }

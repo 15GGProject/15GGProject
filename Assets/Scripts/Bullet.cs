@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Bullet : MonoBehaviour
 
     private Vector2 shotDirection;
 
-    private float bulletSpeed = 10f;
+    private float bulletSpeed = 15f;
+    private bool isFire = false;
 
     public void Start()
     {
@@ -37,8 +39,13 @@ public class Bullet : MonoBehaviour
     //ÃÑ¾Ë ¹æÇâ
     public void SetDirection(Vector2 vector)
     {
-
         shotDirection = vector;
+    }
+
+    public void SetIsFire(bool fire)
+    {
+        isFire = fire;
+        Debug.Log("ÃÑ¾Ë ¼Ó¼º : " + isFire);
     }
 
     //ÃÑ¾Ë ¼Óµµ Áõ°¨
