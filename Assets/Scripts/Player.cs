@@ -123,6 +123,8 @@ public class Player : BaseController
             bulletScript.SetDirection(vector);
             bulletScript.SetIsFire(isFire);
             Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(),isFire);
+            float angle = Mathf.Atan2(vector.y,vector.x)*Mathf.Rad2Deg;
+            bulletScript.AdjustAngle(angle);
         }
     }
 
@@ -138,11 +140,13 @@ public class Player : BaseController
 
         while (true)
         {
-            if (currentExperiencePoint > maxExperiencePoint)
+            //현재 경험치가 최대 경험치 이상이라면 레벨 올리고 그만큼 빼줌
+            if (currentExperiencePoint >= maxExperiencePoint)
             {
                 level++;
                 currentExperiencePoint-=maxExperiencePoint;
             }
+            //0보다 작다면 다시 0으로
             else if(currentExperiencePoint<0)
             {
                 currentExperiencePoint = 0;

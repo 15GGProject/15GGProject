@@ -46,13 +46,20 @@ public class Bullet : MonoBehaviour
     public void SetIsFire(bool fire)
     {
         isFire = fire;
-        Debug.Log("총알 속성 : " + isFire);
+        //Debug.Log("총알 속성 : " + isFire);
     }
 
     //총알 속도 증감
     public void BulletSpeedUpDown(float num)
     {
         bulletSpeed += num;
+    }
+
+    //총알 발사 각도 조절
+    public void AdjustAngle(float angle)
+    {
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        Debug.Log("총알 로테이션 값 : " + transform.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
