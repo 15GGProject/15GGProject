@@ -39,6 +39,12 @@ public class Player : BaseController
         }
     }
 
+    public void PlayerHpChange(float num)
+    {
+        this.hp += num;
+
+    }
+
     public void Silde()
     {
         if (IsGrounded() && Input.GetKeyDown(KeyCode.LeftControl))
