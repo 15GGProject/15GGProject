@@ -8,12 +8,14 @@ public class MenuUI : MonoBehaviour
 
     public void MenuUIOpen()
     {
+        Time.timeScale = 0f;
         Debug.Log("IsMenuBtn");
         MenuPanel.SetActive(true);
     }
     public void MenuUIClose()
     {
         MenuPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
     public void AppExit()
     {
