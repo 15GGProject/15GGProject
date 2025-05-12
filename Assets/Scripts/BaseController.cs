@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D rigidBody;
     protected SpriteRenderer spriteRenderer;
 
-    protected float speed = 12f;
+    protected float speed = 8f;
 
     protected float jumpPower = 15f;
     protected int OriginJumpCount = 2;

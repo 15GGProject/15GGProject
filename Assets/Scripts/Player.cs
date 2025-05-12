@@ -6,6 +6,7 @@ using UnityEngine.Timeline;
 
 public class Player : BaseController
 {
+    [SerializeField] private Camera _camera;
     private Animator playerAnimator;
     private BoxCollider2D playerBoxCollider2D;
     private Vector2 orignBoxSize;
@@ -101,7 +102,7 @@ public class Player : BaseController
         Vector2 shotDirection = Vector2.zero;
 
         //마우스 포지션을 월드 좌표로 변환하기
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         //Debug.Log(mousePos);
         shotDirection = mousePos - bulletStartPosition.position;

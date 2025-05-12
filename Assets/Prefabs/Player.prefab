@@ -84,9 +84,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   groundCheckPoint: {fileID: 7012051017070135169}
+  hp: 100
+  _camera: {fileID: 0}
   bulletStartPosition: {fileID: 3309378764714018064}
   Elemental: {fileID: 1775133001593740624, guid: 77f119b0708713840ae04bc6ecc2d1c0, type: 3}
-  poolManager: {fileID: 438925661726822062, guid: 7db8ef2cbb766ca4a90b4a558184a344, type: 3}
+  poolManager: {fileID: 0}
 --- !u!50 &5418543163249944610
 Rigidbody2D:
   serializedVersion: 4
@@ -146,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010251224, y: 0.5453398}
+  m_Offset: {x: -0.010251224, y: 0.68735605}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -157,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7334665, y: 1.1065559}
+  m_Size: {x: 0.7334665, y: 0.8225235}
   m_EdgeRadius: 0
 --- !u!1 &4485956231391350445
 GameObject:
