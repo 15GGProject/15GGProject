@@ -4,23 +4,38 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private Player player;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbody;
 
-    private float bulletSpeed = 1f;
+    private Vector2 shotDirection;
+
+    private float bulletSpeed = 1000f;
 
     public void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidbody = GetComponentInChildren<Rigidbody2D>();
     }
-    
-    //총알 전진
-    public void BulletAdvance(Vector2 vector)
+
+    public void Update()
     {
-        rigidbody.velocity = vector.normalized*bulletSpeed;
+        BulletAdvance();
     }
-    
+
+    //총알 전진
+    public void BulletAdvance()
+    {
+        rigidbody.velocity = shotDirection * bulletSpeed;
+    }
+
+    //총알 방향
+    public void SetDirection()
+    {
+        shotDirection = player.SetClickDirection();
+    }
+
     //총알 속도 증감
     public void BulletSpeedUpDown(float num)
     {
@@ -31,8 +46,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision != null)
         {
-            //뭐라도 부딧치면 비활성화
-            gameObject.SetActive(false);
+            //뭐라도 부딪치면 비활성화
+            //gameObject.SetActive(false);
         }
     }
 }
