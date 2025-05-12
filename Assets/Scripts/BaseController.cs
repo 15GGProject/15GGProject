@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseController : MonoBehaviour, Elemental
+public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D rigidBody;
     protected SpriteRenderer spriteRenderer;
@@ -13,13 +13,11 @@ public class BaseController : MonoBehaviour, Elemental
     protected int OriginJumpCount = 2;
     int jumpCount;
 
+    //나중에 땅 레이어 만들어서 바꿔줘야 해
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] protected Transform groundCheckPoint;
 
     protected float hp = 100f;
-
-    protected float attackSpeed = 1f;
-    protected float attackPower = 3f;
 
     public void Start()
     {
@@ -56,18 +54,15 @@ public class BaseController : MonoBehaviour, Elemental
 
         return hit.collider != null;
     }
+    //점프력 증감
     public virtual void JumpPowerUpDown(float num)
     {
-
+        jumpPower += num;
     }
-
-    public virtual void Attack()
+    //점프 횟수 증감
+    public virtual void JumpCountUpDown(int num)
     {
-
-    }
-    public virtual void AttackPowerUpDown(float num)
-    {
-
+        jumpCount += num;
     }
 
     public void AutoMove()

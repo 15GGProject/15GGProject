@@ -9,6 +9,9 @@ public class Player : BaseController
     private BoxCollider2D playerBoxCollider2D;
     Vector2 orignBoxSize;
 
+    protected float attackSpeed = 1f;
+    protected float attackPower = 3f;
+
     public void Start()
     {
         base.Start();
@@ -60,5 +63,14 @@ public class Player : BaseController
     public void PlayerHpChange(float num)
     {
         this.hp += num;
+    }
+
+    public void Attack()
+    {
+
+    }
+    public void AttackPowerUpDown(float num)
+    {
+
     }
 }
