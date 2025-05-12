@@ -21,6 +21,8 @@ public class Obstacle : MonoBehaviour
         _obstacleHandler = GetComponent<ObstacleHandler>();
 
         _obstacleHandler.GetObstacle();
+
+        PositionObstacle();
     }
 
     public void PositionObstacle()
@@ -36,13 +38,13 @@ public class Obstacle : MonoBehaviour
         }
     }
 
-    public void MovementObstacle()
+    void MovementObstacle()
     {
         if (_obstacleHandler.ObstacleNumber < 4)
         {
-            Vector2 target = new Vector2(obstacleInstantiatePosition.x, directionY);
+            Vector2 target = new Vector2(_player.transform.position.x - 5f, obstacleInstantiatePosition.y);
 
-            transform.position = Vector2.MoveTowards(obstacleInstantiatePosition, target, 0.1f);
+            transform.position = Vector2.MoveTowards(obstacleInstantiatePosition, target, -0.1f);
         }
     }
     private void Update()
