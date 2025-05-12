@@ -13,19 +13,30 @@ public class BaseController : MonoBehaviour
     protected int OriginJumpCount = 2;
     int jumpCount;
 
+<<<<<<< HEAD
+=======
+    //나중에 땅 레이어 만들어서 바꿔줘야 해
+>>>>>>> dev_player_a
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] protected Transform groundCheckPoint;
 
     protected float hp = 100f;
 
+<<<<<<< HEAD
     protected float attackSpeed = 1f;
     protected float attackPower = 3f;
 
+=======
+>>>>>>> dev_player_a
     public void Start()
     {
         //자기 컴포넌트 가져오기
         rigidBody = GetComponent<Rigidbody2D>();
+<<<<<<< HEAD
         spriteRenderer = GetComponent<SpriteRenderer>();
+=======
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+>>>>>>> dev_player_a
 
         jumpCount = OriginJumpCount;
     }
@@ -48,7 +59,11 @@ public class BaseController : MonoBehaviour
     }
     public bool IsGrounded()
     {
+<<<<<<< HEAD
         float checkDistance = 0.2f;
+=======
+        float checkDistance = 0.3f;
+>>>>>>> dev_player_a
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
         //Debug.Log(hit.collider.name);
         //확인용
@@ -56,6 +71,7 @@ public class BaseController : MonoBehaviour
 
         return hit.collider != null;
     }
+<<<<<<< HEAD
     public virtual void JumpPowerUpDown(float num)
     {
 
@@ -68,6 +84,17 @@ public class BaseController : MonoBehaviour
     public virtual void AttackPowerUpDown(float num)
     {
 
+=======
+    //점프력 증감
+    public virtual void JumpPowerUpDown(float num)
+    {
+        jumpPower += num;
+    }
+    //점프 횟수 증감
+    public virtual void JumpCountUpDown(int num)
+    {
+        jumpCount += num;
+>>>>>>> dev_player_a
     }
 
     public void AutoMove()
