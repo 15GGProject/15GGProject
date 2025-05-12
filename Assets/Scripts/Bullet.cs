@@ -36,12 +36,13 @@ public class Bullet : MonoBehaviour
         //Debug.Log("바꾼 후 : " + rigidbody2D.velocity);
     }
 
-    //총알 방향
+    //총알 방향 설정
     public void SetDirection(Vector2 vector)
     {
         shotDirection = vector;
     }
 
+    //속성 설정
     public void SetIsFire(bool fire)
     {
         isFire = fire;

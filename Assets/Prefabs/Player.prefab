@@ -85,7 +85,8 @@ MonoBehaviour:
     m_Bits: 16
   groundCheckPoint: {fileID: 7012051017070135169}
   bulletStartPosition: {fileID: 3309378764714018064}
-  poolManager: {fileID: 0}
+  Elemental: {fileID: 1775133001593740624, guid: 77f119b0708713840ae04bc6ecc2d1c0, type: 3}
+  poolManager: {fileID: 438925661726822062, guid: 7db8ef2cbb766ca4a90b4a558184a344, type: 3}
 --- !u!50 &5418543163249944610
 Rigidbody2D:
   serializedVersion: 4

@@ -17,6 +17,11 @@ public class Player : BaseController
     protected float attackSpeed = 1f;
     protected float attackPower = 3f;
 
+    protected int level = 1;
+    protected float maxExperiencePoint = 100;
+    protected float currentExperiencePoint = 0;
+    protected int gold = 0;
+
     private bool isFire = false;
 
     public void Start()
@@ -54,7 +59,7 @@ public class Player : BaseController
         AutoMove();
     }
 
-    //땅에 붙어있으면 점프가능 + 점프 횟수 초기화
+    //땅에 붙어있으면 점프 가능 + 점프 횟수 초기화
     public override void Jump()
     {
         base.Jump();
@@ -121,6 +126,33 @@ public class Player : BaseController
         }
     }
 
+    //골드 증감
+    public void GoldUpDown(int num)
+    {
+        gold += num;
+    }
+    //경험치 증감
+    public void ExperiencePointUpDown(float num)
+    {
+        currentExperiencePoint += num;
+
+        while (true)
+        {
+            if (currentExperiencePoint > maxExperiencePoint)
+            {
+                level++;
+                currentExperiencePoint-=maxExperiencePoint;
+            }
+            else if(currentExperiencePoint<0)
+            {
+                currentExperiencePoint = 0;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
     //공격력 증감
     public void AttackPowerUpDown(float num)
     {
@@ -130,8 +162,7 @@ public class Player : BaseController
     {
         return speed;
     }
-
-    public bool IsFire()
+    public bool OutIsFire()
     {
         return isFire;
     }

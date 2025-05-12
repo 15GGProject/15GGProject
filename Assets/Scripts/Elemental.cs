@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Elemental : MonoBehaviour
 {
+    //속성 바꾸기
     public bool ChangeAllElemental(SpriteRenderer spriteRenderer, bool isFire)
     {
         //불이라면 얼음로 바꾸기
@@ -22,7 +23,7 @@ public class Elemental : MonoBehaviour
         //Debug.Log(spriteRenderer.color);
         return isFire;
     }
-
+    //속성 적용
     public void ApplyElemental(SpriteRenderer spriteRenderer, bool isFire)
     {
         //불이라면 불로
