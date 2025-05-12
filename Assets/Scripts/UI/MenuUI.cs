@@ -25,4 +25,8 @@ public class MenuUI : MonoBehaviour
         Application.Quit();
 #endif
     }
+    public void ReturnMainScene()
+    {
+
+    }
 }
