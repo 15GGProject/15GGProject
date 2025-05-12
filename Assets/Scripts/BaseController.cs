@@ -46,7 +46,7 @@ public class BaseController : MonoBehaviour
     }
     public bool IsGrounded()
     {
-        float checkDistance = 0.2f;
+        float checkDistance = 0.3f;
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
         //Debug.Log(hit.collider.name);
         //확인용
@@ -69,10 +69,5 @@ public class BaseController : MonoBehaviour
     {
         // x축 자동 이동
         rigidBody.velocity = new Vector2(speed, rigidBody.velocity.y);
-    }
-
-    public void ChangeColor()
-    {
-
     }
 }

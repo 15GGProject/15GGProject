@@ -1,9 +1,10 @@
-public interface Elemental
-{
-    public void ChangeColor()
-    {
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-    }
+public class Elemental : MonoBehaviour
+{
+    bool isFire = false;
 
     public void ChangeElemental()
     {
