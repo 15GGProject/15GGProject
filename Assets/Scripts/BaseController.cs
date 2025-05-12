@@ -10,7 +10,7 @@ public class BaseController : MonoBehaviour
     protected float speed = 8f;
 
     protected float jumpPower = 15f;
-    protected int OriginJumpCount = 2;
+    [SerializeField] protected int OriginJumpCount = 2; //YH EDIT
     int jumpCount;
 
     //나중에 땅 레이어 만들어서 바꿔줘야 해

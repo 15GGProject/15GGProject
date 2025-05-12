@@ -10,6 +10,7 @@ public class Player : BaseController
     private Animator playerAnimator;
     private BoxCollider2D playerBoxCollider2D;
     private Vector2 orignBoxSize;
+    private Vector2 orignBoxOffset; //YH EDIT
     [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private Elemental Elemental;
 
@@ -32,6 +33,7 @@ public class Player : BaseController
         playerAnimator.SetBool("IsRun", true);
         playerBoxCollider2D = GetComponent<BoxCollider2D>();
         orignBoxSize = playerBoxCollider2D.size;
+        orignBoxOffset = playerBoxCollider2D.offset; // YH EDIT
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
     }
     public void Update()
@@ -82,11 +84,13 @@ public class Player : BaseController
         {
             playerAnimator.SetBool("IsSlide", true);
             playerBoxCollider2D.size = new Vector2(orignBoxSize.x * 1.2f, orignBoxSize.y * 0.5f);
+            playerBoxCollider2D.offset = new Vector2(orignBoxOffset.x, orignBoxOffset.y - 0.2f); //YH EDIT
         }
         else
         {
             playerAnimator.SetBool("IsSlide", false);
             playerBoxCollider2D.size = orignBoxSize;
+            playerBoxCollider2D.offset = orignBoxOffset; // YH EDIT
         }
     }
 
