@@ -16,6 +16,8 @@ public class Player : BaseController
 
     public PoolManager poolManager;
 
+    protected float AttackTime;
+    protected float coolDownAttack = 0.2f;
     protected float attackSpeed = 1f;
     protected float attackPower = 3f;
 
@@ -26,6 +28,8 @@ public class Player : BaseController
 
     private bool isFire = false;
 
+
+
     public void Start()
     {
         base.Start();
@@ -35,6 +39,8 @@ public class Player : BaseController
         orignBoxSize = playerBoxCollider2D.size;
         orignBoxOffset = playerBoxCollider2D.offset; // YH EDIT
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
+
+        AttackTime = coolDownAttack;
     }
     public void Update()
     {
@@ -45,23 +51,22 @@ public class Player : BaseController
         Silde();
 
         //땅에 있으면 자동이동
-        if (IsGrounded()) AutoMove(); 
+        if (IsGrounded()) AutoMove();
 
+        //일정 시간 마다 공격 가능하게
+        AttackTime += Time.deltaTime;
+        Debug.Log(AttackTime);
         //마우스 우클릭으로 공격
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && AttackTime >= coolDownAttack)
         {
             Attack(SetClickDirection());
+            AttackTime = 0;
         }
-
         //g로 속성 전환
         if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
-    }
-    public void FixedUpdate()
-    {
-
     }
 
     //땅에 붙어있으면 점프 가능 + 점프 횟수 초기화
@@ -96,7 +101,8 @@ public class Player : BaseController
         }
     }
 
-    //플레어 체력 num값 만큼 증가(-가능)
+    //플레이어 체력 num값 만큼 증가(-가능)
+    //나중에 플레이어 체력 0이하일때 생각하기 아직 안 만듬
     public void PlayerHpChange(float num)
     {
         this.hp += num;
@@ -129,10 +135,19 @@ public class Player : BaseController
         {
             bulletScript.SetDirection(vector);
             bulletScript.SetIsFire(isFire);
-            Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(),isFire);
-            float angle = Mathf.Atan2(vector.y,vector.x)*Mathf.Rad2Deg;
+            Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(), isFire);
+
+            float angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
             bulletScript.AdjustAngle(angle);
+
+            bulletScript.setTime();
         }
+    }
+
+    //넣어준 시간에 따라 무적시간을 걸어주는 함수(미완)
+    public void Invincibility(float time)
+    {
+
     }
 
     //골드 증감
@@ -151,10 +166,10 @@ public class Player : BaseController
             if (currentExperiencePoint >= maxExperiencePoint)
             {
                 level++;
-                currentExperiencePoint-=maxExperiencePoint;
+                currentExperiencePoint -= maxExperiencePoint;
             }
             //0보다 작다면 다시 0으로
-            else if(currentExperiencePoint<0)
+            else if (currentExperiencePoint < 0)
             {
                 currentExperiencePoint = 0;
             }

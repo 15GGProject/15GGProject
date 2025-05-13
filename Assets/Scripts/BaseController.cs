@@ -10,7 +10,7 @@ public class BaseController : MonoBehaviour
     protected float speed = 8f;
 
     protected float jumpPower = 15f;
-    [SerializeField] protected int OriginJumpCount = 2; //YH EDIT
+    protected int OriginJumpCount = 1;
     int jumpCount;
 
     //나중에 땅 레이어 만들어서 바꿔줘야 해
@@ -51,7 +51,7 @@ public class BaseController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
 
         //확인용
-        if (hit.collider != null)Debug.Log(hit.collider.gameObject.layer);
+        //if (hit.collider != null)Debug.Log(hit.collider.gameObject.layer);
         //확인용
         Debug.DrawRay(groundCheckPoint.position, Vector2.down * checkDistance, Color.red);
 
