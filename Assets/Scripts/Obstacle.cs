@@ -5,8 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
-
     private ObstacleSpawner _obstacleSpawner;
 
     public int _obstacleNum;
@@ -29,7 +27,7 @@ public class Obstacle : MonoBehaviour
 
     public void PositionObstacle()
     {
-        if (_obstacleNum < 2)
+        if (_obstacleNum < 4)
         {
            arrowRandomNumber = Random.Range(0, 2);
 
@@ -37,16 +35,12 @@ public class Obstacle : MonoBehaviour
             {
                 if (arrowRandomNumber == i)
                 {
-                    obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 18f, -2.6f + i * 0.8f); // È­»ì
-                }
+                    obstacleInstantiatePosition = new Vector2(transform.position.x + 10f, 3.4f + i * 0.8f); // È­»ì && ¹Ì»çÀÏ
+                }   
             }
         }
-        else if ( 1 < _obstacleNum && _obstacleNum < 4 )
-        {
-            obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 18f, -2f); // ¹Ì»çÀÏ
-        }
         else
-            obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 11.5f, -3f); // ½ºÄÌ·¹Åæ
+            obstacleInstantiatePosition = new Vector2(transform.position.x + 11.5f, 5f); // ½ºÄÌ·¹Åæ
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,7 +59,7 @@ public class Obstacle : MonoBehaviour
     {
         if (_obstacleNum < 4)
         {
-            Vector2 target = new Vector2(_player.transform.position.x - 5f, obstacleInstantiatePosition.y);
+            Vector2 target = new Vector2(obstacleInstantiatePosition.x - 5f, obstacleInstantiatePosition.y);
 
             transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
         }

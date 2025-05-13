@@ -10,13 +10,22 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        GetObstacle(false);
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //충돌체 이름이 map11이라면 
+        // ObstacleNumber = Random.Range(0, 6);
+        // else
+        GetObstacle();
+
+        ObstacleNumber = Random.Range(0, 6);
     }
 
-    public void GetObstacle(bool canSkeletSpawn)
-    {
-        ObstacleNumber = Random.Range(0, 6);
 
+    public void GetObstacle()
+    {
+        
         for (int i = 0; i < Obstacles.Length; i++)
         {
             if (ObstacleNumber == i)
