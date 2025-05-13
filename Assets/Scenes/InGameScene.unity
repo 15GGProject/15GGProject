@@ -190,7 +190,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2897709285830955301, guid: 5e0d370a744d71d42bc942b69475e5dd, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player_00
       objectReference: {fileID: 0}
     - target: {fileID: 5418543163249944610, guid: 5e0d370a744d71d42bc942b69475e5dd, type: 3}
       propertyPath: m_GravityScale
