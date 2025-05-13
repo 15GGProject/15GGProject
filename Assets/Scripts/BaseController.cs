@@ -17,7 +17,8 @@ public class BaseController : MonoBehaviour
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] protected Transform groundCheckPoint;
 
-    [SerializeField]protected float hp = 100f;
+    protected float currentHp = 100f;
+    protected float MaxHp = 100f;
 
     public void Start()
     {

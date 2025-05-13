@@ -67,7 +67,6 @@ public class Player : BaseController
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
-
         //무적 테스트
         if(Input.GetKeyDown(KeyCode.K))
         {
@@ -105,13 +104,6 @@ public class Player : BaseController
             playerBoxCollider2D.size = orignBoxSize;
             playerBoxCollider2D.offset = orignBoxOffset; // YH EDIT
         }
-    }
-
-    //플레이어 체력 num값 만큼 증가(-가능)
-    //나중에 플레이어 체력 0이하일때 생각하기 아직 안 만듬
-    public void PlayerHpChange(float num)
-    {
-        this.hp += num;
     }
 
     //마우스 위치 월드 좌표와 플레이어 위치를 연결한 백터값의 노멀라이즈 값을 구해주는 함수
@@ -231,6 +223,19 @@ public class Player : BaseController
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
+    }
+    //플레이어 체력 num값 만큼 증가(-가능)
+    public void PlayerHpChange(float num)
+    {
+        this.currentHp += num;
+        if(currentHp > MaxHp)
+        {
+            currentHp = MaxHp;
+        }
+        else if(currentHp<0)
+        {
+            currentHp = 0;
+        }
     }
     public float OutSpeed()
     {
