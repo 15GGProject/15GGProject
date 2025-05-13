@@ -195,7 +195,7 @@ public class Player : BaseController
     {
         gold += num;
     }
-    //경험치 증감
+    //경험치 증감( )
     public void ExperiencePointUpDown(float num)
     {
         currentExperiencePoint += num;
@@ -228,14 +228,23 @@ public class Player : BaseController
     public void PlayerHpChange(float num)
     {
         this.currentHp += num;
-        if(currentHp > MaxHp)
+        if(currentHp > maxHp)
         {
-            currentHp = MaxHp;
+            currentHp = maxHp;
         }
         else if(currentHp<0)
         {
             currentHp = 0;
         }
+    }
+    
+    public float OutCurrentHp()
+    {
+        return currentHp;
+    }
+    public float OutMaxHp()
+    {
+        return maxHp;
     }
     public float OutSpeed()
     {

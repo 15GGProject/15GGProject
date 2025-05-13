@@ -18,7 +18,7 @@ public class BaseController : MonoBehaviour
     [SerializeField] protected Transform groundCheckPoint;
 
     protected float currentHp = 100f;
-    protected float MaxHp = 100f;
+    protected float maxHp = 100f;
 
     public void Start()
     {
