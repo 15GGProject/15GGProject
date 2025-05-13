@@ -27,7 +27,7 @@ public class Player : BaseController
     protected int gold = 0;
 
     private bool isFire = false;
-
+    private bool isInvincible = false;
 
 
     public void Start()
@@ -55,7 +55,7 @@ public class Player : BaseController
 
         //일정 시간 마다 공격 가능하게
         AttackTime += Time.deltaTime;
-        Debug.Log(AttackTime);
+        //Debug.Log(AttackTime);
         //마우스 우클릭으로 공격
         if (Input.GetKeyDown(KeyCode.Mouse0) && AttackTime >= coolDownAttack)
         {
@@ -66,6 +66,12 @@ public class Player : BaseController
         if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
+        }
+
+        //무적 테스트
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ActivateInvincibility(3f);
         }
     }
 
@@ -144,10 +150,52 @@ public class Player : BaseController
         }
     }
 
-    //넣어준 시간에 따라 무적시간을 걸어주는 함수(미완)
-    public void Invincibility(float time)
+    //넣어준 시간에 따라 무적시간을 걸어주는 함수
+    public void ActivateInvincibility(float duration)
     {
+        if (!isInvincible)
+        {
+            StartCoroutine(InvincibilityCoroutine(duration));
+        }
+    }
 
+    //무적 코루틴
+    private IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        //Invincibility(10)
+        this.gameObject.layer = 10;
+        Debug.Log("무적 상태 시작"+ this.gameObject.layer);
+
+        float elapsed = 0f;
+        bool visible = true;
+        float blinkInterval = 0.1f; //깜빡이는 간격(0.1초마다)
+
+        // 깜빡임 루프 (무적 시간 동안 반복)
+        while (elapsed < duration)
+        {
+            elapsed += blinkInterval;
+            Debug.Log(elapsed);
+
+            // 알파값 변경
+            Color color = spriteRenderer.color;
+            color.a = visible ? 0.2f : 1f;
+            spriteRenderer.color = color;
+
+            visible = !visible;
+
+            yield return new WaitForSeconds(blinkInterval); // 깜빡이는 간격 (0.1초마다)
+        }
+
+        // 원래대로 복구
+        Color resetColor = spriteRenderer.color;
+        resetColor.a = 1f;
+        spriteRenderer.color = resetColor;
+
+        isInvincible = false;
+        //Player(9)
+        this.gameObject.layer = 9;
+        Debug.Log("무적 상태 종료" + this.gameObject.layer);
     }
 
     //골드 증감

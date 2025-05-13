@@ -13,7 +13,7 @@ public class BaseController : MonoBehaviour
     protected int OriginJumpCount = 1;
     int jumpCount;
 
-    //나중에 땅 레이어 만들어서 바꿔줘야 해
+    //나중에 땅 레이어 만들어서 바꿔줘야 해 -> 했음
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] protected Transform groundCheckPoint;
 
