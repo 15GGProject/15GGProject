@@ -398,9 +398,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5051198162976842227}
   - component: {fileID: -2027578991586034023}
+  - component: {fileID: 3424665203763711961}
   m_Layer: 0
   m_Name: Map01
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,7 +454,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -464,8 +465,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3424665203763711961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401384480557015141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e036ac820d69245879124020801822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthPadding: 1
 --- !u!1 &7503494598135189117
 GameObject:
   m_ObjectHideFlags: 0
