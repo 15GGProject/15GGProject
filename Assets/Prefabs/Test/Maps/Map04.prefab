@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 7011548331661580675}
   - component: {fileID: 6707336432328105362}
   - component: {fileID: 3214666738578225548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 4621060559608249936}
   - component: {fileID: 8709663010107662451}
   - component: {fileID: 7802604273734807064}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

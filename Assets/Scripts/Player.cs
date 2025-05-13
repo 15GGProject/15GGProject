@@ -50,8 +50,8 @@ public class Player : BaseController
             Attack(SetClickDirection());
         }
 
-        //t로 속성 전환
-        if (Input.GetKeyDown(KeyCode.T))
+        //g로 속성 전환
+        if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }

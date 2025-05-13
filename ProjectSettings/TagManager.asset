@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fire
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Ice
+  - Obstacle
+  - Player
   - 
   - 
   - 
