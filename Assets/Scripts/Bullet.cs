@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    private GameObject player;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidbody2D;
@@ -15,15 +15,28 @@ public class Bullet : MonoBehaviour
     private float bulletSpeed = 20f;
     private bool isFire = false;
 
+    //3(ice),7(fire),8(Obstacle)
+    private int layerMask = (1 << 8) | (1 << 7) | (1 << 3);
+
+    float realTime = 0f;
+    float disableTimer = 4f;
+
     public void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Update()
     {
         BulletAdvance();
+
+        //4초후 총알 비활성화
+        if (realTime >= disableTimer)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     //총알 전진
@@ -31,7 +44,7 @@ public class Bullet : MonoBehaviour
     {
         rigidbody2D.velocity = shotDirection * bulletSpeed;
         //Debug.Log("바꾸기 전 : " + rigidbody2D.velocity);
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + player.OutSpeed(), rigidbody2D.velocity.y);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + player.GetComponent<Player>().speed, rigidbody2D.velocity.y);
         //Debug.Log("player rigidbody : " + player.GetComponent<Rigidbody2D>().velocity.x);
         //Debug.Log("바꾼 후 : " + rigidbody2D.velocity);
     }
@@ -62,12 +75,18 @@ public class Bullet : MonoBehaviour
         //Debug.Log("총알 로테이션 값 : " + transform.rotation);
     }
 
+    //사라지는 시간 초기화
+    public void setTime()
+    {
+        realTime = 0f;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name != player.name)
+        //3(ice),7(fire),8(Obstacle) 일때 비활성화
+        if ((layerMask & (1 << collision.gameObject.layer)) != 0)
         {
-            //Debug.Log(collision);
-            //플레이어가 아니라면 부딪치면 비활성화
             gameObject.SetActive(false);
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3031975982812862344}
   - component: {fileID: 4991010391805162077}
   - component: {fileID: 3927305411168631289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 6.5, y: 3}
@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 3470398539031594420}
   - component: {fileID: 8658587886770580351}
   - component: {fileID: 3859178582038172569}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1629,9 +1629,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377624675467045164}
+  - component: {fileID: 6925531115078633238}
+  - component: {fileID: 6442107022181046002}
   m_Layer: 0
   m_Name: Map10
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1652,6 +1654,64 @@ Transform:
   - {fileID: 2848983774418705841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6925531115078633238
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696114924786270057}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 19, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &6442107022181046002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696114924786270057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e036ac820d69245879124020801822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  widthPadding: 1
 --- !u!1 &7406158091599030854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1724,7 @@ GameObject:
   - component: {fileID: 6825184600370813873}
   - component: {fileID: 6396944960036409770}
   - component: {fileID: 1661252608372943153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1840,7 +1900,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 6.5, y: -2.5}
@@ -1868,7 +1928,7 @@ GameObject:
   - component: {fileID: 7339943835011819781}
   - component: {fileID: 5744919348137553834}
   - component: {fileID: 1269277382629365946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2044,7 +2104,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -4.5, y: -2.5}
@@ -2072,7 +2132,7 @@ GameObject:
   - component: {fileID: 4273803717472725501}
   - component: {fileID: 8393091633118044996}
   - component: {fileID: 7497172119557958127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2432,7 +2492,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1, y: 1.5}
@@ -2460,7 +2520,7 @@ GameObject:
   - component: {fileID: 4273722763359459460}
   - component: {fileID: 8473830148131941863}
   - component: {fileID: 6622904331110294823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2684,7 +2744,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -4.5, y: 3}
