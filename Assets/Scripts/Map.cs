@@ -7,16 +7,13 @@ public class Map : MonoBehaviour
 {
     public float widthPadding = 4f; // 맵 사이의 간격
     float width;
-    public Vector3 SetPlace(Vector3 lastPosition, int mapcount)
+    public void SetPlace(Vector3 lastPosition, int mapidx)
     {
         Vector3 newPosition = lastPosition;
+        //if(lastPosition == Vector3.zero) return newPosition = new Vector3(0,0,0);
         width = ((BoxCollider2D)this.GetComponent<Collider2D>()).size.x;
-
-        newPosition.x += width + widthPadding; // 공백 추가
-
-
-
+            newPosition.x += (width + widthPadding)*mapidx; // 공백 추가
+        Debug.Log("Name :"+this.name+"newPosition : "+newPosition.x+"width : "+ width + "widthPadding : "+widthPadding);
         this.transform.position = newPosition;
-        return newPosition;
     }
 }
