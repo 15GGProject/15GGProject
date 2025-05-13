@@ -10,10 +10,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        GetObstacle();
+        GetObstacle(false);
     }
 
-    public void GetObstacle()
+    public void GetObstacle(bool canSkeletSpawn)
     {
         ObstacleNumber = Random.Range(0, 6);
 
