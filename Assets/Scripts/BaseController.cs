@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D rigidBody;
     protected SpriteRenderer spriteRenderer;
 
-    [Range(0f,8f)]protected float speed = 8f;
+    [Range(0f, 8f)] public float speed = 8f;
 
     protected float jumpPower = 15f;
     protected int OriginJumpCount = 1;
@@ -49,7 +49,7 @@ public class BaseController : MonoBehaviour
     //땅인지 아닌지 bool값 반환
     public bool IsGrounded()
     {
-        
+
         float checkDistance = 0.3f;
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
 
