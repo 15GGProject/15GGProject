@@ -14,11 +14,12 @@ public class Player : BaseController
     [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private Elemental Elemental;
 
+    [Range(0f, 8f)] protected float speed = 8f;
+
     public PoolManager poolManager;
 
     protected float AttackTime;
-    protected float coolDownAttack = 0.2f;
-    protected float attackSpeed { get; private set; } = 1f;
+    protected float coolDownAttack { get; private set; } = 0.2f;
     protected float attackPower { get; private set; } = 3f;
 
     protected int level { get; private set; } = 1;
@@ -195,7 +196,7 @@ public class Player : BaseController
     {
         gold += num;
     }
-    //경험치 증감( )
+    //경험치 증감(필요없을 가능성 높음)
     public void ExperiencePointUpDown(float num)
     {
         currentExperiencePoint += num;
@@ -219,7 +220,7 @@ public class Player : BaseController
             }
         }
     }
-    //공격력 증감
+    //공격력 증감(필요없을듯)
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
@@ -237,21 +238,13 @@ public class Player : BaseController
             currentHp = 0;
         }
     }
-    
-    public float OutCurrentHp()
+    //플레이어 공격 속도 증감
+    public void AttackSpeedUpDown(float num)
     {
-        return currentHp;
-    }
-    public float OutMaxHp()
-    {
-        return maxHp;
-    }
-    public float OutSpeed()
-    {
-        return speed;
-    }
-    public bool OutIsFire()
-    {
-        return isFire;
+        coolDownAttack += num;
+        if(coolDownAttack<0f)
+        {
+            coolDownAttack = 0f;
+        }
     }
 }

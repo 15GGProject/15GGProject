@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     protected Rigidbody2D rigidBody;
     protected SpriteRenderer spriteRenderer;
 
-    protected float speed = 8f;
+    [Range(0f,8f)]protected float speed = 8f;
 
     protected float jumpPower = 15f;
     protected int OriginJumpCount = 1;
@@ -26,9 +26,10 @@ public class BaseController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
+        //점프 횟수 초기화
         jumpCount = OriginJumpCount;
     }
-
+    //점프 구현
     public virtual void Jump()
     {
         //땅에 닿을때 jumpCount 초기화
@@ -45,6 +46,7 @@ public class BaseController : MonoBehaviour
             Debug.Log(jumpCount);
         }
     }
+    //땅인지 아닌지 bool값 반환
     public bool IsGrounded()
     {
         
@@ -68,10 +70,14 @@ public class BaseController : MonoBehaviour
     {
         jumpCount += num;
     }
-
+    // x축 자동 이동
     public void AutoMove()
     {
-        // x축 자동 이동
         rigidBody.velocity = new Vector2(speed, rigidBody.velocity.y);
+    }
+    //x축 속도 증감
+    public void SpeedUpDown(float num)
+    {
+        speed += num;
     }
 }
