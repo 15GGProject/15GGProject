@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3031975982812862344}
   - component: {fileID: 4991010391805162077}
   - component: {fileID: 3927305411168631289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 3470398539031594420}
   - component: {fileID: 8658587886770580351}
   - component: {fileID: 3859178582038172569}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1664,7 +1664,7 @@ GameObject:
   - component: {fileID: 6825184600370813873}
   - component: {fileID: 6396944960036409770}
   - component: {fileID: 1661252608372943153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 7339943835011819781}
   - component: {fileID: 5744919348137553834}
   - component: {fileID: 1269277382629365946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2072,7 @@ GameObject:
   - component: {fileID: 4273803717472725501}
   - component: {fileID: 8393091633118044996}
   - component: {fileID: 7497172119557958127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2107,7 +2107,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2278,10 +2278,10 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 741fc07fcc27b4547bfbf31ee2e84cb5, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 2fc76447e599b4d4e94ab0fc87450c92, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 2fc76447e599b4d4e94ab0fc87450c92, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: b1ec9ef8e32360e4b9b17b7568c6e402, type: 3}
   - m_RefCount: 6
@@ -2460,7 +2460,7 @@ GameObject:
   - component: {fileID: 4273722763359459460}
   - component: {fileID: 8473830148131941863}
   - component: {fileID: 6622904331110294823}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
