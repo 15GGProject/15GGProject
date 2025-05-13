@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class Map: MonoBehaviour
+public class Map : MonoBehaviour
 {
-    public float widthPadding = 4f;//방해물의 폭(좌우공간)을 정의
-    public Vector3 SetPlace(Vector3 lastPosition, int obstacleCount)//랜덤으로 방해물을 생성하는 메서드(마지막포지션,방해물의갯수)
+    public float widthPadding = 4f; // 맵 사이의 간격
+    float width;
+    public Vector3 SetPlace(Vector3 lastPosition, int mapcount)
     {
-        Vector3 placePosition = lastPosition + new Vector3(widthPadding, 0);//생성되는 x축은 마지막포지션에 패딩값을 더해준다.
+        Vector3 newPosition = lastPosition;
+        width = ((BoxCollider2D)this.GetComponent<Collider2D>()).size.x;
 
-        transform.position = placePosition;//x값을 넣어준다.
+        newPosition.x += width + widthPadding; // 공백 추가
 
-        return placePosition;//플레이스 포지션을 리턴한다.
+
+
+        this.transform.position = newPosition;
+        return newPosition;
     }
 }

@@ -51,7 +51,7 @@ public class BaseController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
 
         //확인용
-        if (hit.collider != null)Debug.Log(hit.collider.gameObject.layer);
+        //if (hit.collider != null)Debug.Log(hit.collider.gameObject.layer);
         //확인용
         Debug.DrawRay(groundCheckPoint.position, Vector2.down * checkDistance, Color.red);
 
