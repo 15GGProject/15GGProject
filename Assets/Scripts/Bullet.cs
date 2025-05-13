@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
     {
         rigidbody2D.velocity = shotDirection * bulletSpeed;
         //Debug.Log("바꾸기 전 : " + rigidbody2D.velocity);
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + player.GetComponent<Player>().OutSpeed(), rigidbody2D.velocity.y);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + player.GetComponent<Player>().speed, rigidbody2D.velocity.y);
         //Debug.Log("player rigidbody : " + player.GetComponent<Rigidbody2D>().velocity.x);
         //Debug.Log("바꾼 후 : " + rigidbody2D.velocity);
     }
