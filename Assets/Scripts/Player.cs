@@ -44,22 +44,24 @@ public class Player : BaseController
         //컨트롤 키로 슬라이딩
         Silde();
 
+        //땅에 있으면 자동이동
+        if (IsGrounded()) AutoMove(); 
+
         //마우스 우클릭으로 공격
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Attack(SetClickDirection());
         }
 
-        //t로 속성 전환
-        if (Input.GetKeyDown(KeyCode.T))
+        //g로 속성 전환
+        if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
     }
     public void FixedUpdate()
     {
-        //자동이동
-        AutoMove();
+
     }
 
     //땅에 붙어있으면 점프 가능 + 점프 횟수 초기화

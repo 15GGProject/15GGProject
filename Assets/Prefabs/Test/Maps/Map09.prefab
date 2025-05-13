@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5141467378086331436}
   - component: {fileID: 2456920930072324466}
   - component: {fileID: 1776794813973426021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 7684767214666418211}
   - component: {fileID: 1683013488103126349}
   - component: {fileID: 8271487199153103906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 5841454639100589030}
   - component: {fileID: 5643890616671617084}
   - component: {fileID: 2609610379979738995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ObstacleCollider02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1930,7 +1930,7 @@ GameObject:
   - component: {fileID: 6865690825120453163}
   - component: {fileID: 7989695238929966483}
   - component: {fileID: 8431220924725986691}
-  m_Layer: 4
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

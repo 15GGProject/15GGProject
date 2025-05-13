@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7012051017070135169}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerFloorPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 261222717908105199}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.065, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 7012083270437052064}
   - component: {fileID: 5418543163249944610}
   - component: {fileID: 4870375023630300043}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,14 +80,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ecf14cec6678d48b53ab8cfde78dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OriginJumpCount: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 64
   groundCheckPoint: {fileID: 7012051017070135169}
   hp: 100
   _camera: {fileID: 0}
   bulletStartPosition: {fileID: 3309378764714018064}
-  Elemental: {fileID: 1775133001593740624, guid: 77f119b0708713840ae04bc6ecc2d1c0, type: 3}
+  Elemental: {fileID: 0}
   poolManager: {fileID: 0}
 --- !u!50 &5418543163249944610
 Rigidbody2D:
@@ -148,7 +149,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010251224, y: 0.68735605}
+  m_Offset: {x: -0.010251224, y: 0.5764732}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -159,7 +160,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7334665, y: 0.8225235}
+  m_Size: {x: 0.7334665, y: 1.0442892}
   m_EdgeRadius: 0
 --- !u!1 &4485956231391350445
 GameObject:
@@ -170,7 +171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3309378764714018064}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotPovit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +204,7 @@ GameObject:
   - component: {fileID: 8964390998736071026}
   - component: {fileID: 6861459784659621918}
   - component: {fileID: 5960504426411786479}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

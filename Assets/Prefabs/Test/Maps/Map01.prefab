@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6646489776421435725}
   - component: {fileID: 6593606038344399026}
   - component: {fileID: 6661723735145398179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

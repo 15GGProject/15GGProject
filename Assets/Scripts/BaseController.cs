@@ -37,18 +37,21 @@ public class BaseController : MonoBehaviour
             jumpCount = OriginJumpCount;
         }
         // 점프 입력(왜인지모름 왜 설정한거보다 한번 더 점프하는지)
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 1)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount >= 1)
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPower);
             jumpCount--;
-            //Debug.Log(jumpCount);
+            Debug.Log(jumpCount);
         }
     }
     public bool IsGrounded()
     {
+        
         float checkDistance = 0.3f;
         RaycastHit2D hit = Physics2D.Raycast(groundCheckPoint.position, Vector2.down, checkDistance, groundLayer);
-        //Debug.Log(hit.collider.name);
+
+        //확인용
+        if (hit.collider != null)Debug.Log(hit.collider.gameObject.layer);
         //확인용
         Debug.DrawRay(groundCheckPoint.position, Vector2.down * checkDistance, Color.red);
 
