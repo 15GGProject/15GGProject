@@ -18,13 +18,13 @@ public class Player : BaseController
 
     protected float AttackTime;
     protected float coolDownAttack = 0.2f;
-    protected float attackSpeed = 1f;
-    protected float attackPower = 3f;
+    protected float attackSpeed { get; private set; } = 1f;
+    protected float attackPower { get; private set; } = 3f;
 
-    protected int level = 1;
-    protected float maxExperiencePoint = 100;
-    protected float currentExperiencePoint = 0;
-    protected int gold = 0;
+    protected int level { get; private set; } = 1;
+    protected float maxExperiencePoint { get; private set; } = 100;
+    protected float currentExperiencePoint { get; private set; } = 0;
+    protected int gold { get; private set; } = 0;
 
     private bool isFire = false;
     private bool isInvincible = false;
