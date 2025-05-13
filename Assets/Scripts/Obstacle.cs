@@ -7,49 +7,46 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
 
-    private ObstacleHandler _obstacleHandler;
+    private ObstacleSpawner _obstacleSpawner;
 
-    private int randomNumber;
+    public int _obstacleNum;
+    int arrowRandomNumber;
+
     Vector2 obstacleInstantiatePosition;
-
-    float directionX;
-    float directionY;
 
     // Start is called before the first frame update
     void Start()
     {
-        _obstacleHandler = GetComponent<ObstacleHandler>();
-
-        _obstacleHandler.GetObstacle();
+        _obstacleSpawner = GetComponentInParent<ObstacleSpawner>();
+        _obstacleNum = _obstacleSpawner.ObstacleNumber;
 
         PositionObstacle();
-    }
-
-    public void PositionObstacle()
-    {
-        randomNumber = Random.Range(0, 2);
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (randomNumber == i)
-            {
-                obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 10 , -2.6f + i * 0.8f); // 아래가 random 0번, 위가 random 1번
-            }
-        }
-    }
-
-    void MovementObstacle()
-    {
-        if (_obstacleHandler.ObstacleNumber < 4)
-        {
-            Vector2 target = new Vector2(_player.transform.position.x - 5f, obstacleInstantiatePosition.y);
-
-            transform.position = Vector2.MoveTowards(obstacleInstantiatePosition, target, -0.1f);
-        }
     }
     private void Update()
     {
         MovementObstacle();
+    }
+
+    public void PositionObstacle()
+    {
+        if (_obstacleNum < 2)
+        {
+           arrowRandomNumber = Random.Range(0, 2);
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (arrowRandomNumber == i)
+                {
+                    obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 18f, -2.6f + i * 0.8f); // 화살
+                }
+            }
+        }
+        else if ( 1 < _obstacleNum && _obstacleNum < 4 )
+        {
+            obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 18f, -2f); // 미사일
+        }
+        else
+            obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 11.5f, -3f); // 스켈레톤
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +56,18 @@ public class Obstacle : MonoBehaviour
         {
             Debug.Log("HIT!!");
             player.PlayerHpChange(-10f);
-            Destroy(this);
+            Destroy(this.gameObject);
+            //충돌 시 체력 감소 및 일시적 무적 판정모드 함수 부분
+        }
+    }
+
+    void MovementObstacle()
+    {
+        if (_obstacleNum < 4)
+        {
+            Vector2 target = new Vector2(_player.transform.position.x - 5f, obstacleInstantiatePosition.y);
+
+            transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
         }
     }
 }

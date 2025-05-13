@@ -753,7 +753,6 @@ GameObject:
   - component: {fileID: 7970930566443619724}
   - component: {fileID: 4074489432740324514}
   - component: {fileID: 3632884073292278693}
-  - component: {fileID: 8781668970903801355}
   m_Layer: 0
   m_Name: IceArrow
   m_TagString: Untagged
@@ -886,26 +885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
---- !u!114 &8781668970903801355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4341554824659932660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ee76440dd1978b40a62257a15b77562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObstacleNumber: 0
-  Obstacles:
-  - {fileID: 21300000, guid: 5a3516793abced54aaae8a4026851e27, type: 3}
-  - {fileID: 21300000, guid: f5fee2ec2a49fb3489e491751f13bd87, type: 3}
-  - {fileID: 21300000, guid: ca6f0fe831af3ff4297bc3d6bd5abf7d, type: 3}
-  - {fileID: 21300000, guid: 95836a1b3b4f3324cad7cca7c8c3f366, type: 3}
-  - {fileID: 21300000, guid: 84c000e0a6e2ddd4aa46c58ab8242ba2, type: 3}
-  - {fileID: 21300000, guid: 593876a8b6d38c643a7e17e6383355b5, type: 3}
+  Obstacles: []
 --- !u!1 &4539674551005487669
 GameObject:
   m_ObjectHideFlags: 0
