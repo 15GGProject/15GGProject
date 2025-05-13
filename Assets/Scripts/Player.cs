@@ -58,8 +58,7 @@ public class Player : BaseController
     }
     public void FixedUpdate()
     {
-        //자동이동
-        AutoMove();
+       if(IsGrounded()) AutoMove(); //자동이동
     }
 
     //땅에 붙어있으면 점프 가능 + 점프 횟수 초기화
