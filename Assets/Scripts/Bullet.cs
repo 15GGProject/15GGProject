@@ -18,7 +18,8 @@ public class Bullet : MonoBehaviour
     //3(ice),7(fire),8(Obstacle)
     private int layerMask = (1 << 8) | (1 << 7) | (1 << 3);
 
-    float time = 0f;
+    float realTime = 0f;
+    float disableTimer = 4f;
 
     public void Start()
     {
@@ -31,9 +32,8 @@ public class Bullet : MonoBehaviour
     {
         BulletAdvance();
 
-        //10초후 총알 비활성화
-        time += Time.deltaTime;
-        if (time >= 10)
+        //4초후 총알 비활성화
+        if (realTime >= disableTimer)
         {
             gameObject.SetActive(false);
         }
@@ -75,10 +75,17 @@ public class Bullet : MonoBehaviour
         //Debug.Log("총알 로테이션 값 : " + transform.rotation);
     }
 
+    //사라지는 시간 초기화
+    public void setTime()
+    {
+        realTime = 0f;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //3(ice),7(fire),8(Obstacle) 일때 비활성화
-        if ((layerMask & (1<<collision.gameObject.layer)) != 0)
+        if ((layerMask & (1 << collision.gameObject.layer)) != 0)
         {
             gameObject.SetActive(false);
         }
