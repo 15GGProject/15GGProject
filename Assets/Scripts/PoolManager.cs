@@ -5,15 +5,17 @@ using UnityEngine;
 public class PoolManager : MonoBehaviour
 {
     public int bulletCount = 10;
+    public int mapCount = 11;
     public GameObject bulletPrefab;
 
     private List<GameObject> bulletPool;
+    private List<GameObject> MapPool;
 
-    private void Start()
+
+    private void Awake()
     {
         bulletPool = new List<GameObject>();
-
-        //기본 총알 생성
+        MapPool = new List<GameObject>();
         for (int i = 0; i < bulletCount; i++)
         {
             GameObject gameObject = Instantiate(bulletPrefab);
@@ -21,8 +23,30 @@ public class PoolManager : MonoBehaviour
             bulletPool.Add(gameObject);
         }
     }
+    public GameObject GetMap() //외부에서 받을때쓰는 메서드
+    {
+        int random =Random.Range(0, MapPool.Count);
+        GameObject selectMap = MapPool[random];
+        while(selectMap.name == "Map01")
+        {
+            random = Random.Range(0, MapPool.Count);
+            selectMap = MapPool[random];
+        }
+        selectMap.gameObject.SetActive(true);
+        MapPool.Remove(MapPool[random]);
+        Debug.Log("GetMapName : "+selectMap.gameObject.name);
+        return selectMap.gameObject;
+        
+    }
+    public void SetMap(GameObject map) //외부에서 값을 지정(리스트에 넣기)
+    {
+        if(map.name != "Map01")
+        {
+            MapPool.Add(map);
+            map.gameObject.SetActive(false);
+        }
+    }
 
-    //비활성화 된 총알 빼주기
     public GameObject GetBullet()
     {
         foreach (GameObject go in bulletPool)
@@ -40,5 +64,4 @@ public class PoolManager : MonoBehaviour
         bulletPool.Add(nuwGameObject);
         return nuwGameObject;
     }
-
 }
