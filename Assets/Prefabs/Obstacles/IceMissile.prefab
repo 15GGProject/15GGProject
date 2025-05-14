@@ -176,5 +176,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 4620236501214677333, guid: 3426c37ff168953459a4c62e19f43373, type: 3}
-  obSpn: {fileID: 4945508474736069659, guid: 9ee35f2ad01f41b44915cd6e039a8d4b, type: 3}
-  _obstacleNum: 0

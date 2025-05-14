@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4945508474736069659
+--- !u!1 &4807974413385778128
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2409588754033139658}
-  - component: {fileID: 4706068815991832449}
-  - component: {fileID: 2650520899023344746}
-  - component: {fileID: 2089732327365881191}
+  - component: {fileID: 6373778575581510389}
+  - component: {fileID: 5398904145276407929}
+  - component: {fileID: 5924127033014334151}
+  - component: {fileID: 274214804869053105}
   m_Layer: 0
   m_Name: ObSpnLooper
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2409588754033139658
+--- !u!4 &6373778575581510389
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945508474736069659}
+  m_GameObject: {fileID: 4807974413385778128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.5, y: -6, z: 0}
@@ -34,26 +34,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4706068815991832449
+--- !u!114 &5398904145276407929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945508474736069659}
+  m_GameObject: {fileID: 4807974413385778128}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3487686b0eb5f3f4c87f4cfc09b9689a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
---- !u!114 &2650520899023344746
+--- !u!114 &5924127033014334151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945508474736069659}
+  m_GameObject: {fileID: 4807974413385778128}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42dfc8593a782a740bb9d5dce4536f5c, type: 3}
@@ -68,13 +68,13 @@ MonoBehaviour:
   - {fileID: 5466428123368171626, guid: 16b9978c987a3b24999559f09c6950ac, type: 3}
   _obstacles: {fileID: 0}
   ObstacleNumber: 0
---- !u!61 &2089732327365881191
+--- !u!61 &274214804869053105
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4945508474736069659}
+  m_GameObject: {fileID: 4807974413385778128}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
