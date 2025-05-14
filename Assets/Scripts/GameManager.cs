@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Time.timeScale = 1.0f;
     }
 
     public void Start()
