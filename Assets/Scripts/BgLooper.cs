@@ -16,8 +16,8 @@ public class BgLooper : MonoBehaviour
         Map[] maps = GameObject.FindObjectsOfType<Map>();
         for (int i = 0; i < maps.Length; i++)
         {
-            Debug.Log(poolManager);
-            Debug.Log(maps[i].gameObject);
+            //Debug.Log(poolManager);
+            //Debug.Log(maps[i].gameObject);
             if (maps[i].name != "Map01")
             poolManager.SetMap(maps[i].gameObject);
         }
@@ -46,9 +46,5 @@ public class BgLooper : MonoBehaviour
         //    Debug.Log("MapRespawn");
         //    map.SetPlace(mapLastPosition, mapCount);
         //}
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("Exit");
     }
 }

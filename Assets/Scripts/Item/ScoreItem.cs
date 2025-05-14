@@ -10,9 +10,9 @@ public class ScoreItem : BaseItem
     private void OnTriggerEnter2D(Collider2D other) // other는 충돌한 오브젝트를 의미
     {
         // 테스트 디버깅로그
-        Debug.Log("무언가와 충돌함: " + other.gameObject.name);
+        //Debug.Log("무언가와 충돌함: " + other.gameObject.name);
         // 충돌한 오브젝트가 플레이어일 경우
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.layer == 9 || other.gameObject.layer == 10)
         {
             // 아이템 효과를 적용
             ApplyEffect();
@@ -25,7 +25,7 @@ public class ScoreItem : BaseItem
     public override void ApplyEffect()
     {
         // 점수 아이템 효과를 적용하는 로직
-        Debug.Log(itemName + " : 점수획득");
+        //Debug.Log(itemName + " : 점수획득");
         GameManager.Instance.AddScore(); // 점수 추가
     }
 }

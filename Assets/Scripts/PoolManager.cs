@@ -35,7 +35,7 @@ public class PoolManager : MonoBehaviour
         }
         selectMap.gameObject.SetActive(true);
         MapPool.Remove(MapPool[random]);
-        Debug.Log("GetMapName : "+selectMap.gameObject.name);
+        //Debug.Log("GetMapName : "+selectMap.gameObject.name);
         return selectMap.gameObject;
         
     }

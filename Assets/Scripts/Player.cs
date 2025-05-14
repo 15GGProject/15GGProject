@@ -23,7 +23,7 @@ public class Player : BaseController
     protected int level { get; private set; } = 1;
     protected float maxExperiencePoint { get; private set; } = 100;
     protected float currentExperiencePoint { get; private set; } = 0;
-    protected int gold { get; private set; } = 0;
+    public int gold { get; private set; } = 0;
 
     public bool isFire { get; private set; } = false;
     private bool isInvincible = false;
@@ -160,7 +160,7 @@ public class Player : BaseController
         isInvincible = true;
         //Invincibility(10)
         this.gameObject.layer = 10;
-        Debug.Log("무적 상태 시작"+ this.gameObject.layer);
+        //Debug.Log("무적 상태 시작"+ this.gameObject.layer);
 
         float elapsed = 0f;
         bool visible = true;
@@ -170,7 +170,7 @@ public class Player : BaseController
         while (elapsed < duration)
         {
             elapsed += blinkInterval;
-            Debug.Log(elapsed);
+            //Debug.Log(elapsed);
 
             // 알파값 변경
             Color color = spriteRenderer.color;
@@ -190,7 +190,7 @@ public class Player : BaseController
         isInvincible = false;
         //Player(9)
         this.gameObject.layer = 9;
-        Debug.Log("무적 상태 종료" + this.gameObject.layer);
+        //Debug.Log("무적 상태 종료" + this.gameObject.layer);
     }
 
     //골드 증감
@@ -232,9 +232,13 @@ public class Player : BaseController
         // 버프 처리
         if (data.itemType == ItemType.Speed)
         {
-            isSpeedBuffed = true; // 스피드 버프상태변경
-            SpeedUpDown(-4f); // 예: 기본 8에서 12로 증가
+            ActivateInvincibility(5f);
             StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
+
+            if (isSpeedBuffed) return;
+            isSpeedBuffed = true;
+
+            SpeedUpDown(4f); // 예: 기본 8에서 12로 증가
         }
         else if (data.itemType == ItemType.Heal)
         {
@@ -244,7 +248,10 @@ public class Player : BaseController
     private IEnumerator SpeedBuffTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
-        SpeedUpDown(4f); // 증가시킨 만큼 다시 빼기
+        if (isSpeedBuffed)
+        {
+            SpeedUpDown(-4f); // 증가시킨 만큼 다시 빼기
+        }
         isSpeedBuffed = false;
     }
     //플레이어 체력 num값 만큼 증가(-가능)
@@ -269,7 +276,7 @@ public class Player : BaseController
             coolDownAttack = 0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         //구조물에 닿았을때 무적시간 
         if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)

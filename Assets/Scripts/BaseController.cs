@@ -43,7 +43,7 @@ public class BaseController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpPower);
             jumpCount--;
-            Debug.Log(jumpCount);
+            //Debug.Log(jumpCount);
         }
     }
     //땅인지 아닌지 bool값 반환
