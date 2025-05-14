@@ -10,7 +10,7 @@ public class SpeedItem : BaseItem
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트가 플레이어일 경우
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.layer == 9)
         {
             // 아이템 효과를 적용
             ApplyEffect();

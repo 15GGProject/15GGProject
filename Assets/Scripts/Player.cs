@@ -269,7 +269,7 @@ public class Player : BaseController
             coolDownAttack = 0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         //구조물에 닿았을때 무적시간 
         if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)
