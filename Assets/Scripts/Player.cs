@@ -25,12 +25,14 @@ public class Player : BaseController
     protected float currentExperiencePoint { get; private set; } = 0;
     protected int gold { get; private set; } = 0;
 
-    private bool isFire = false;
+    public bool isFire { get; private set; } = false;
     private bool isInvincible = false;
 
+    private bool isSpeedBuffed = false; // 스픠드 버프 상태 유무
 
     public void Start()
     {
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
         base.Start();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
@@ -40,6 +42,8 @@ public class Player : BaseController
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
 
         AttackTime = coolDownAttack;
+
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
     }
     public void Update()
     {
@@ -223,6 +227,26 @@ public class Player : BaseController
     {
         attackPower += num;
     }
+    public void ApplyItemEffect(ItemDate data)
+    {
+        // 버프 처리
+        if (data.itemType == ItemType.Speed)
+        {
+            isSpeedBuffed = true; // 스피드 버프상태변경
+            SpeedUpDown(-4f); // 예: 기본 8에서 12로 증가
+            StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
+        }
+        else if (data.itemType == ItemType.Heal)
+        {
+            PlayerHpChange(30);
+        }
+    }
+    private IEnumerator SpeedBuffTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        SpeedUpDown(4f); // 증가시킨 만큼 다시 빼기
+        isSpeedBuffed = false;
+    }
     //플레이어 체력 num값 만큼 증가(-가능)
     public void PlayerHpChange(float num)
     {
@@ -243,6 +267,15 @@ public class Player : BaseController
         if(coolDownAttack<0f)
         {
             coolDownAttack = 0f;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //구조물에 닿았을때 무적시간 
+        if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)
+        {
+            PlayerHpChange(-5f);
+            ActivateInvincibility(1f);
         }
     }
 }
