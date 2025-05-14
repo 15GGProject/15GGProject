@@ -23,7 +23,7 @@ public class Player : BaseController
     protected int level { get; private set; } = 1;
     protected float maxExperiencePoint { get; private set; } = 100;
     protected float currentExperiencePoint { get; private set; } = 0;
-    protected int gold { get; private set; } = 0;
+    public int gold { get; private set; } = 0;
 
     public bool isFire { get; private set; } = false;
     private bool isInvincible = false;
@@ -233,8 +233,12 @@ public class Player : BaseController
         if (data.itemType == ItemType.Speed)
         {
             isSpeedBuffed = true; // 스피드 버프상태변경
-            SpeedUpDown(-4f); // 예: 기본 8에서 12로 증가
+            ActivateInvincibility(5f);
             StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
+
+            if (isSpeedBuffed) return;
+
+            SpeedUpDown(4f); // 예: 기본 8에서 12로 증가
         }
         else if (data.itemType == ItemType.Heal)
         {
@@ -269,7 +273,7 @@ public class Player : BaseController
             coolDownAttack = 0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         //구조물에 닿았을때 무적시간 
         if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)
