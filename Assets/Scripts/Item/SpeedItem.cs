@@ -22,7 +22,7 @@ public class SpeedItem : BaseItem
     public override void ApplyEffect()
     {
         // 속도 아이템 효과를 적용하는 로직
-        Debug.Log(itemName + " : 속도 감속");
+        //Debug.Log(itemName + " : 속도 감속");
         ItemDate data = new ItemDate
         {
             itemName = this.itemName,
@@ -40,6 +40,6 @@ public class SpeedItem : BaseItem
         }
 
         // 속도 증가 효과를 적용하는 메소드 호출
-        //GameManager.Instance.SpeedUp(data); // 속도 증가
+        GameManager.Instance.SpeedUp(data); // 속도 증가
     }
 }
