@@ -6,26 +6,25 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] Obstacles;
 
+    [SerializeField] private GameObject _obstacles;
+
     public int ObstacleNumber;
 
     void Start()
     {
-        
+        GetObstacle();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //충돌체 이름이 map11이라면 
         // ObstacleNumber = Random.Range(0, 6);
         // else
-        GetObstacle();
-
-        ObstacleNumber = Random.Range(0, 6);
     }
-
 
     public void GetObstacle()
     {
-        
+        ObstacleNumber = Random.Range(0, 6);
+
         for (int i = 0; i < Obstacles.Length; i++)
         {
             if (ObstacleNumber == i)
@@ -34,7 +33,7 @@ public class ObstacleSpawner : MonoBehaviour
 
                 newObj = Instantiate(Obstacles[i]);
 
-                newObj.transform.SetParent(this.transform);
+                newObj.transform.SetParent(_obstacles.transform);
             }
         }
     }
