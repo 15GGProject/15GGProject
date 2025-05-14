@@ -30,14 +30,9 @@ public class Player : BaseController
 
     private bool isSpeedBuffed = false; // 스픠드 버프 상태 유무
 
-    public void Awake()
-    {
-        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
-
-    }
-
     public void Start()
     {
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
         base.Start();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
