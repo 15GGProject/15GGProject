@@ -12,19 +12,27 @@ public class ObstacleSpawner : MonoBehaviour
 
     void Start()
     {
-        GetObstacle();
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //충돌체 이름이 map11이라면 
-        // ObstacleNumber = Random.Range(0, 6);
-        // else
+        if (collision.gameObject.layer == 11)
+        {
+            if (collision.gameObject.name == "Map11")
+            {
+                ObstacleNumber = Random.Range(0, 6);
+            }
+            else
+            {
+                ObstacleNumber = Random.Range(0, 4);
+            }
+
+            GetObstacle();
+        } 
     }
 
     public void GetObstacle()
     {
-        ObstacleNumber = Random.Range(0, 6);
-
         for (int i = 0; i < Obstacles.Length; i++)
         {
             if (ObstacleNumber == i)

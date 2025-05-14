@@ -5,7 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Obstacle : MonoBehaviour
 {
-    private GameObject _player;
     private GameObject _obSpn;
     private GameObject _bgLooper;
 
@@ -21,21 +20,31 @@ public class Obstacle : MonoBehaviour
 
     [SerializeField] private ObstacleHandler obstacleHp; // Scriptable Object / SerializeField 필수!!
 
+    GameObject camera;
+    Player player;
+
+    bool isObstacleFire;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject camera = GameObject.Find("Camera");
-        GameObject player = GameObject.Find("Player_00");
+        camera = GameObject.Find("Camera");
+        player = FindAnyObjectByType<Player>();
  
         _obSpn = camera.transform.Find("ObSpnLooper").gameObject;
         _bgLooper = camera.transform.Find("BgLooper").gameObject;
-        _player = player;
 
         _obstacleSpawner = _obSpn.GetComponent<ObstacleSpawner>();
         _obstacleNum = _obstacleSpawner.ObstacleNumber;
 
         PositionObstacle();
         ObstacleHP();
+
+        if (_obstacleNum % 2 == 0)
+        {
+            isObstacleFire = true;
+        }
+        else
+            isObstacleFire = false;
     }
     private void Update()
     {
@@ -66,7 +75,7 @@ public class Obstacle : MonoBehaviour
             {
                 if (arrowRandomNumber == i)
                 {
-                    obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 20, -2.6f + i * 0.8f); // 화살 & 미사일 스폰 후 이동 장소
+                    obstacleInstantiatePosition = new Vector2(player.transform.position.x + 20, -2.6f + i * 0.8f); // 화살 & 미사일 스폰 후 이동 장소
 
                     transform.position = obstacleInstantiatePosition;
                 }   
@@ -74,7 +83,7 @@ public class Obstacle : MonoBehaviour
         }
         else
         {
-            obstacleInstantiatePosition = new Vector2(_player.transform.position.x + 15f, -1f); // 스켈레톤 스폰 후 이동 장소
+            obstacleInstantiatePosition = new Vector2(player.transform.position.x + 11.5f, -1f); // 스켈레톤 스폰 후 이동 장소
 
             transform.position = obstacleInstantiatePosition;
         }
@@ -83,11 +92,12 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = _player.GetComponent<Player>();
         Bullet bullet = collision.GetComponent<Bullet>();
 
-        if (collision.gameObject == _player) // player와 부딪히면 체력이 깎이고 일정시간 무적
+        if (collision.gameObject.layer == 9 && isObstacleFire != player.isFire) // player와 부딪히면 체력이 깎이고 일정시간 무적
         {
+            player.ActivateInvincibility(1f);
+
             if (_obstacleNum < 2)
             {
                 player.PlayerHpChange(-5f); //화살 데미지
@@ -97,10 +107,9 @@ public class Obstacle : MonoBehaviour
                 player.PlayerHpChange(-10f); //미사일 데미지
             }
             else
-                player.PlayerHpChange(-10f); // 스켈레톤 데미지
-            
-            //충돌 시 체력 감소 및 일정시간 무적모드 함수 부분
+                player.PlayerHpChange(-10f); // 스켈레톤 데미지   
         }
+
         if (collision.gameObject == _bgLooper) // bgLooper와 부딪히면 파괴
         {
             Destroy(this.gameObject);
@@ -118,7 +127,7 @@ public class Obstacle : MonoBehaviour
     {
         if (_obstacleNum < 4)
         {
-            Vector2 target = new Vector2(_player.transform.position.x - 5f, obstacleInstantiatePosition.y);
+            Vector2 target = new Vector2(player.transform.position.x - 500f, obstacleInstantiatePosition.y);
 
             transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
         }

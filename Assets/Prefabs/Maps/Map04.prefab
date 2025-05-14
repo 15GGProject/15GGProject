@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 3017495524815130704}
   - component: {fileID: -8339703899103175410}
   - component: {fileID: 1551832766106664813}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Map04
   m_TagString: Respawn
   m_Icon: {fileID: 0}
