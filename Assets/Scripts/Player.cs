@@ -14,8 +14,6 @@ public class Player : BaseController
     [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private Elemental Elemental;
 
-    [Range(0f, 8f)] protected float speed = 8f;
-
     public PoolManager poolManager;
 
     protected float AttackTime;
@@ -107,7 +105,7 @@ public class Player : BaseController
         }
     }
 
-    //마우스 위치 월드 좌표와 플레이어 위치를 연결한 백터값의 노멀라이즈 값을 구해주는 함수
+    //마우스 위치 좌표와 플레이어 위치를 연결한 백터값의 노멀라이즈 값을 구해주는 함수
     public Vector2 SetClickDirection()
     {
         Vector2 shotDirection = Vector2.zero;
