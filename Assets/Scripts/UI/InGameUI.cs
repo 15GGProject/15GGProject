@@ -36,6 +36,7 @@ public class InGameUI : MonoBehaviour
         ScoreUI();
         GoldUI();
         HPUI();
+
     }
 
     private void ScoreUI()
@@ -46,10 +47,9 @@ public class InGameUI : MonoBehaviour
     {
         GoldText.text = "Gold : " + gold;
     }
-    private void HPUI() 
-    { 
-        HPSlider.value = (HP/TotalHP);       
+    private void HPUI()
+    {
+        HPSlider.value = (HP / TotalHP);
     }
-
 
 }
