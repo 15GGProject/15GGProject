@@ -16,8 +16,8 @@ public class ScoreItem : BaseItem
         {
             // 아이템 효과를 적용
             ApplyEffect();
-            // 아이템을 파괴
-            Destroy(gameObject);
+            // 아이템을 비활성화
+            gameObject.SetActive(false);
         }
     }
 
@@ -26,7 +26,7 @@ public class ScoreItem : BaseItem
     {
         // 점수 아이템 효과를 적용하는 로직
         //Debug.Log(itemName + " : 점수획득");
-        GameManager.Instance.AddScore(); // 점수 추가
+        GameManager.Instance.AddScore(this.gameObject); // 점수 추가
     }
 }
 

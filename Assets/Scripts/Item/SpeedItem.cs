@@ -14,8 +14,8 @@ public class SpeedItem : BaseItem
         {
             // 아이템 효과를 적용
             ApplyEffect();
-            // 아이템을 파괴
-            Destroy(gameObject);
+            // 아이템을 비활성화 > 2초뒤 다시 활성화
+            gameObject.SetActive(false);
         }
     }
 
@@ -32,7 +32,7 @@ public class SpeedItem : BaseItem
 
         if (GameManager.Instance != null && GameManager.Instance.PlayerExists()) // 아래에 설명
         {
-            GameManager.Instance.SpeedUp(data);
+            GameManager.Instance.SpeedUp(data, this.gameObject);
         }
         else
         {
@@ -40,6 +40,6 @@ public class SpeedItem : BaseItem
         }
 
         // 속도 증가 효과를 적용하는 메소드 호출
-        GameManager.Instance.SpeedUp(data); // 속도 증가
+        GameManager.Instance.SpeedUp(data, this.gameObject); // 속도 증가
     }
 }
