@@ -25,19 +25,14 @@ public class Player : BaseController
     protected float currentExperiencePoint { get; private set; } = 0;
     protected int gold { get; private set; } = 0;
 
-    private bool isFire = false;
+    public bool isFire { get; private set; } = false;
     private bool isInvincible = false;
 
     private bool isSpeedBuffed = false; // 스픠드 버프 상태 유무
 
-    public void Awake()
-    {
-        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
-
-    }
-
     public void Start()
     {
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
         base.Start();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
@@ -47,7 +42,8 @@ public class Player : BaseController
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
 
         AttackTime = coolDownAttack;
-        
+
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
     }
     public void Update()
     {

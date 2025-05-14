@@ -80,12 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ecf14cec6678d48b53ab8cfde78dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginJumpCount: 3
+  speed: 8
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckPoint: {fileID: 7012051017070135169}
-  hp: 100
   _camera: {fileID: 0}
   bulletStartPosition: {fileID: 3309378764714018064}
   Elemental: {fileID: 0}
@@ -105,7 +104,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
