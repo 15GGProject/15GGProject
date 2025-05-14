@@ -227,12 +227,12 @@ public class Player : BaseController
     {
         attackPower += num;
     }
-    public void ApplyItemEffect(ItemDate data)
+    public void ApplyItemEffect(ItemDate data, GameObject itemObj)
     {
         // 버프 처리
         if (data.itemType == ItemType.Speed)
         {
-
+            StartCoroutine(SetActive(itemObj));
 
             ActivateInvincibility(5f);
             StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
@@ -246,6 +246,7 @@ public class Player : BaseController
         }
         else if (data.itemType == ItemType.Heal)
         {
+            StartCoroutine(SetActive(itemObj));
             PlayerHpChange(30);
         }
     }
@@ -288,5 +289,10 @@ public class Player : BaseController
             PlayerHpChange(-5f);
             ActivateInvincibility(1f);
         }
+    }
+    private IEnumerator SetActive(GameObject item)
+    {
+        yield return new WaitForSeconds(2f);
+        item.SetActive(true);
     }
 }
