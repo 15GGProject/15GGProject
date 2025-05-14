@@ -11,8 +11,8 @@ public class Obstacle : MonoBehaviour
     private ObstacleSpawner _obstacleSpawner;
     
     private int _obstacleNum;
-
     private int _obstacleHp;
+    private float obstacleSpeed;
 
     int arrowRandomNumber;
 
@@ -125,11 +125,13 @@ public class Obstacle : MonoBehaviour
 
     void movementObstacle()
     {
+        obstacleSpeed = Random.Range(0.04f, 0.1f);
+
         if (_obstacleNum < 4)
         {
             Vector2 target = new Vector2(player.transform.position.x - 500f, obstacleInstantiatePosition.y);
 
-            transform.position = Vector2.MoveTowards(transform.position, target, 0.1f);
+            transform.position = Vector2.MoveTowards(transform.position, target, obstacleSpeed);
         }
     }
 }
