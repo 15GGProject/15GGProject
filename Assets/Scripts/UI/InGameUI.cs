@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class InGameUI : MonoBehaviour
 {
     public GameObject player;
-    public TextMeshProUGUI BestScoreText;
+    public TextMeshProUGUI BestScore;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI GoldText;
     public Image Player_Profile;
-    public int score = 0;
+    private int score = 0;
+    private int gold = 0;
+    public float HP = 0f;
+    public float TotalHP = 100f;
     public Slider HPSlider;
-    public int BestScore = 0;
+
     private void Start()
     {
         SpriteRenderer playerSpriteRenderer = player.GetComponentInChildren<SpriteRenderer>();
@@ -24,28 +28,28 @@ public class InGameUI : MonoBehaviour
         {
             Debug.LogWarning("Player SpriteRenderer 또는 Profile Image가 연결되지 않았습니다.");
         }
-        BestScoreText.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        BestScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
 
     }
     private void Update()
     {
         ScoreUI();
+        GoldUI();
         HPUI();
-        BestScoreUI();
     }
 
     private void ScoreUI()
     {
         ScoreText.text = "Score : " + score;
     }
-
-    private void HPUI()
+    private void GoldUI()
     {
-        HPSlider.value = (player.GetComponent<Player>().currentHp / player.GetComponent<Player>().maxHp);
+        GoldText.text = "Gold : " + gold;
+    }
+    private void HPUI() 
+    { 
+        HPSlider.value = (HP/TotalHP);       
     }
 
-    private void BestScoreUI()
-    {
-        BestScoreText.text = "BestScore : " + PlayerPrefs.GetInt("BestScore", 0);
-    }
+
 }

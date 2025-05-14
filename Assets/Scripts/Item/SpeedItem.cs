@@ -7,10 +7,10 @@ public class SpeedItem : BaseItem
     private string itemName = "Speed";
     private ItemType itemType = ItemType.Speed;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 오브젝트가 플레이어일 경우
-        if (other.gameObject.layer == 9 || other.gameObject.layer == 10)
+        if (collision.gameObject.name == "Player")
         {
             // 아이템 효과를 적용
             ApplyEffect();

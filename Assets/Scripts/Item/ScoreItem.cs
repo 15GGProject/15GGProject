@@ -12,7 +12,7 @@ public class ScoreItem : BaseItem
         // 테스트 디버깅로그
         Debug.Log("무언가와 충돌함: " + other.gameObject.name);
         // 충돌한 오브젝트가 플레이어일 경우
-        if (other.gameObject.layer == 9 || other.gameObject.layer == 10)
+        if (other.gameObject.name == "Player")
         {
             // 아이템 효과를 적용
             ApplyEffect();

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
@@ -20,18 +19,16 @@ public class MenuUI : MonoBehaviour
     }
     public void AppExit()
     {
-     #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
-     #elif UNITY_WEBPLAYER
+#elif UNITY_WEBPLAYER
         Application.OpenURL(webplayerQuitURL);
-     #else
+#else
         Application.Quit();
-     #endif
+#endif
     }
     public void ReturnMainScene()
     {
-        MenuPanel.SetActive(false);  // 메뉴 UI 끄기
-        Time.timeScale = 1f;         // 시간 되돌리기
-        SceneManager.LoadScene("MainScene");
+
     }
 }
