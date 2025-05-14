@@ -14,6 +14,8 @@ public class Player : BaseController
     [SerializeField] private Transform bulletStartPosition;
     [SerializeField] private Elemental Elemental;
 
+    public GameOver_UI gameover;
+
     public PoolManager poolManager;
 
     protected float AttackTime;
@@ -70,10 +72,11 @@ public class Player : BaseController
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
-        //무적 테스트
-        if(Input.GetKeyDown(KeyCode.K))
+        //무적 테스트 죽음 테스트
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            ActivateInvincibility(3f);
+            //ActivateInvincibility(3f);
+            PlayerHpChange(-100f);
         }
     }
 
@@ -263,20 +266,21 @@ public class Player : BaseController
     public void PlayerHpChange(float num)
     {
         this.currentHp += num;
-        if(currentHp > maxHp)
+        if (currentHp > maxHp)
         {
             currentHp = maxHp;
         }
-        else if(currentHp<0)
+        else if (currentHp < 0)
         {
             currentHp = 0;
+            gameover.ShowGameOver();
         }
     }
     //플레이어 공격 속도 증감
     public void AttackSpeedUpDown(float num)
     {
         coolDownAttack += num;
-        if(coolDownAttack<0f)
+        if (coolDownAttack < 0f)
         {
             coolDownAttack = 0f;
         }
@@ -284,10 +288,15 @@ public class Player : BaseController
     private void OnTriggerStay2D(Collider2D collision)
     {
         //구조물에 닿았을때 무적시간 
-        if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)
+        if (collision.gameObject.layer == 8 && this.gameObject.layer == 9)
         {
             PlayerHpChange(-5f);
             ActivateInvincibility(1f);
+        }
+        //낙사
+        if(collision.gameObject.layer == 11)
+        {
+            PlayerHpChange(-maxHp);
         }
     }
     private IEnumerator SetActive(GameObject item)
