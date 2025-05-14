@@ -16,8 +16,9 @@ public class HealItem : BaseItem
         {
             // 아이템 효과를 적용
             ApplyEffect();
-            // 아이템을 파괴
-            Destroy(gameObject);
+            // 아이템을 비활성화
+            gameObject.SetActive(false);
+            
         }
     }
 
@@ -32,11 +33,12 @@ public class HealItem : BaseItem
 
         if (GameManager.Instance != null && GameManager.Instance.PlayerExists()) // 아래에 설명
         {
-            GameManager.Instance.Heal(data);
+            GameManager.Instance.Heal(data, this.gameObject);
         }
         else
         {
             Debug.LogWarning("GameManager.Instance 또는 player가 아직 null입니다.");
         }
     }
+    
 }

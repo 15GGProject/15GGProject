@@ -40,15 +40,16 @@ public class GameManager : MonoBehaviour
         return player != null;
     }
 
-    public void AddScore()
+    public void AddScore(GameObject item)
     {
         _score.addScore(50);
         _score.BestScoreCurrent();
 
         inGameUI.score = _score.CurrentScore;
         inGameUI.BestScore = _score.BestScore;
+        StartCoroutine(SetActive(item));
     }
-    public void SpeedUp(ItemDate itemDate)
+    public void SpeedUp(ItemDate data, GameObject item)
     {
         if (player == null)
         {
@@ -56,11 +57,16 @@ public class GameManager : MonoBehaviour
             return;
         }
         // 속도 증가 로직
-        player.ApplyItemEffect(itemDate); // 플레이어에게 아이템 효과 적용
+        player.ApplyItemEffect(data, item); // 플레이어에게 아이템 효과 적용
     }
-    public void Heal(ItemDate data)
+    public void Heal(ItemDate data, GameObject item)
     {
         // 체력 회복아이템 로직
-        player.ApplyItemEffect(data); // 플레이어에게 아이템 효과 적용
+        player.ApplyItemEffect(data, item); // 플레이어에게 아이템 효과 적용
+    }
+    private IEnumerator SetActive(GameObject item)
+    {
+        yield return new WaitForSeconds(2f);
+        item.SetActive(true);
     }
 }
