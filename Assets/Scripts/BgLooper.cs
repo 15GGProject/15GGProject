@@ -18,9 +18,10 @@ public class BgLooper : MonoBehaviour
         {
             Debug.Log(poolManager);
             Debug.Log(maps[i].gameObject);
+            if (maps[i].name != "Map01")
             poolManager.SetMap(maps[i].gameObject);
         }
-        for (int i = 0; i < MapCount; i++) 
+        for (int i = 0; i < MapCount; i++)
         {
             Map map = poolManager.GetMap().GetComponent<Map>();
             mapLastPosition = map.SetPlace(mapLastPosition);
@@ -29,7 +30,7 @@ public class BgLooper : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
         if (collision.CompareTag("Respawn"))
         {
             poolManager.SetMap(collision.gameObject);

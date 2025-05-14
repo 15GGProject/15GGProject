@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -40,11 +41,9 @@ public class PoolManager : MonoBehaviour
     }
     public void SetMap(GameObject map) //외부에서 값을 지정(리스트에 넣기)
     {
-        if(map.name != "Map01")
-        {
+        
             MapPool.Add(map);
             map.gameObject.SetActive(false);
-        }
     }
 
     public GameObject GetBullet()
