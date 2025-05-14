@@ -13,6 +13,7 @@ public class PoolManager : MonoBehaviour
     {
         bulletPool = new List<GameObject>();
 
+        //±âº» ÃÑ¾Ë »ý¼º
         for (int i = 0; i < bulletCount; i++)
         {
             GameObject gameObject = Instantiate(bulletPrefab);
@@ -21,6 +22,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
+    //ºñÈ°¼ºÈ­ µÈ ÃÑ¾Ë »©ÁÖ±â
     public GameObject GetBullet()
     {
         foreach (GameObject go in bulletPool)
@@ -38,4 +40,5 @@ public class PoolManager : MonoBehaviour
         bulletPool.Add(nuwGameObject);
         return nuwGameObject;
     }
+
 }
