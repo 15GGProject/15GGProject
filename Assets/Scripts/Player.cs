@@ -16,15 +16,25 @@ public class Player : BaseController
 
     public PoolManager poolManager;
 
-    protected float attackSpeed = 1f;
-    protected float attackPower = 3f;
+    protected float AttackTime;
+    protected float coolDownAttack { get; private set; } = 0.2f;
+    protected float attackPower { get; private set; } = 3f;
 
-    protected int level = 1;
-    protected float maxExperiencePoint = 100;
-    protected float currentExperiencePoint = 0;
-    protected int gold = 0;
+    protected int level { get; private set; } = 1;
+    protected float maxExperiencePoint { get; private set; } = 100;
+    protected float currentExperiencePoint { get; private set; } = 0;
+    protected int gold { get; private set; } = 0;
 
     private bool isFire = false;
+    private bool isInvincible = false;
+
+    private bool isSpeedBuffed = false; // 스픠드 버프 상태 유무
+
+    public void Awake()
+    {
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
+
+    }
 
     public void Start()
     {
@@ -35,6 +45,9 @@ public class Player : BaseController
         orignBoxSize = playerBoxCollider2D.size;
         orignBoxOffset = playerBoxCollider2D.offset; // YH EDIT
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
+
+        AttackTime = coolDownAttack;
+        
     }
     public void Update()
     {
@@ -44,22 +57,28 @@ public class Player : BaseController
         //컨트롤 키로 슬라이딩
         Silde();
 
+        //땅에 있으면 자동이동
+        if (IsGrounded()) AutoMove();
+
+        //일정 시간 마다 공격 가능하게
+        AttackTime += Time.deltaTime;
+        //Debug.Log(AttackTime);
         //마우스 우클릭으로 공격
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && AttackTime >= coolDownAttack)
         {
             Attack(SetClickDirection());
+            AttackTime = 0;
         }
-
-        //t로 속성 전환
-        if (Input.GetKeyDown(KeyCode.T))
+        //g로 속성 전환
+        if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
-    }
-    public void FixedUpdate()
-    {
-        //자동이동
-        AutoMove();
+        //무적 테스트
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            ActivateInvincibility(3f);
+        }
     }
 
     //땅에 붙어있으면 점프 가능 + 점프 횟수 초기화
@@ -94,14 +113,7 @@ public class Player : BaseController
         }
     }
 
-    //플레어 체력 num값 만큼 증가(-가능)
-    public void PlayerHpChange(float num)
-    {
-        this.currentHp += num;
-    }
-
-    
-    //마우스 위치 월드 좌표와 플레이어 위치를 연결한 백터값의 노멀라이즈 값을 구해주는 함수
+    //마우스 위치 좌표와 플레이어 위치를 연결한 백터값의 노멀라이즈 값을 구해주는 함수
     public Vector2 SetClickDirection()
     {
         Vector2 shotDirection = Vector2.zero;
@@ -128,10 +140,61 @@ public class Player : BaseController
         {
             bulletScript.SetDirection(vector);
             bulletScript.SetIsFire(isFire);
-            Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(),isFire);
-            float angle = Mathf.Atan2(vector.y,vector.x)*Mathf.Rad2Deg;
+            Elemental.ApplyElemental(bullet.GetComponentInChildren<SpriteRenderer>(), isFire);
+
+            float angle = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
             bulletScript.AdjustAngle(angle);
+
+            bulletScript.setTime();
         }
+    }
+
+    //넣어준 시간에 따라 무적시간을 걸어주는 함수
+    public void ActivateInvincibility(float duration)
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(InvincibilityCoroutine(duration));
+        }
+    }
+
+    //무적 코루틴
+    private IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        //Invincibility(10)
+        this.gameObject.layer = 10;
+        Debug.Log("무적 상태 시작"+ this.gameObject.layer);
+
+        float elapsed = 0f;
+        bool visible = true;
+        float blinkInterval = 0.1f; //깜빡이는 간격(0.1초마다)
+
+        // 깜빡임 루프 (무적 시간 동안 반복)
+        while (elapsed < duration)
+        {
+            elapsed += blinkInterval;
+            Debug.Log(elapsed);
+
+            // 알파값 변경
+            Color color = spriteRenderer.color;
+            color.a = visible ? 0.2f : 1f;
+            spriteRenderer.color = color;
+
+            visible = !visible;
+
+            yield return new WaitForSeconds(blinkInterval); // 깜빡이는 간격 (0.1초마다)
+        }
+
+        // 원래대로 복구
+        Color resetColor = spriteRenderer.color;
+        resetColor.a = 1f;
+        spriteRenderer.color = resetColor;
+
+        isInvincible = false;
+        //Player(9)
+        this.gameObject.layer = 9;
+        Debug.Log("무적 상태 종료" + this.gameObject.layer);
     }
 
     //골드 증감
@@ -139,7 +202,7 @@ public class Player : BaseController
     {
         gold += num;
     }
-    //경험치 증감
+    //경험치 증감(필요없을 가능성 높음)
     public void ExperiencePointUpDown(float num)
     {
         currentExperiencePoint += num;
@@ -150,10 +213,10 @@ public class Player : BaseController
             if (currentExperiencePoint >= maxExperiencePoint)
             {
                 level++;
-                currentExperiencePoint-=maxExperiencePoint;
+                currentExperiencePoint -= maxExperiencePoint;
             }
             //0보다 작다면 다시 0으로
-            else if(currentExperiencePoint<0)
+            else if (currentExperiencePoint < 0)
             {
                 currentExperiencePoint = 0;
             }
@@ -163,17 +226,51 @@ public class Player : BaseController
             }
         }
     }
-    //공격력 증감
+    //공격력 증감(필요없을듯)
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
     }
-    public float OutSpeed()
+    public void ApplyItemEffect(ItemDate data)
     {
-        return speed;
+        // 버프 처리
+        if (data.itemType == ItemType.Speed)
+        {
+            isSpeedBuffed = true; // 스피드 버프상태변경
+            SpeedUpDown(-4f); // 예: 기본 8에서 12로 증가
+            StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
+        }
+        else if (data.itemType == ItemType.Heal)
+        {
+            PlayerHpChange(30);
+        }
     }
-    public bool OutIsFire()
+    private IEnumerator SpeedBuffTimer(float duration)
     {
-        return isFire;
+        yield return new WaitForSeconds(duration);
+        SpeedUpDown(4f); // 증가시킨 만큼 다시 빼기
+        isSpeedBuffed = false;
+    }
+    //플레이어 체력 num값 만큼 증가(-가능)
+    public void PlayerHpChange(float num)
+    {
+        this.currentHp += num;
+        if(currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+        else if(currentHp<0)
+        {
+            currentHp = 0;
+        }
+    }
+    //플레이어 공격 속도 증감
+    public void AttackSpeedUpDown(float num)
+    {
+        coolDownAttack += num;
+        if(coolDownAttack<0f)
+        {
+            coolDownAttack = 0f;
+        }
     }
 }
