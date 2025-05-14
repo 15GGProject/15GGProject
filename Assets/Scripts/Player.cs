@@ -30,6 +30,13 @@ public class Player : BaseController
     private bool isFire = false;
     private bool isInvincible = false;
 
+    private bool isSpeedBuffed = false; // 스픠드 버프 상태 유무
+
+    public void Awake()
+    {
+        GameManager.Instance.RegisterPlayer(this); // GameManager에 이 Player 인스턴스를 등록
+
+    }
 
     public void Start()
     {
@@ -42,6 +49,7 @@ public class Player : BaseController
         isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
 
         AttackTime = coolDownAttack;
+        
     }
     public void Update()
     {
@@ -224,6 +232,26 @@ public class Player : BaseController
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
+    }
+    public void ApplyItemEffect(ItemDate data)
+    {
+        // 버프 처리
+        if (data.itemType == ItemType.Speed)
+        {
+            isSpeedBuffed = true; // 스피드 버프상태변경
+            SpeedUpDown(-4f); // 예: 기본 8에서 12로 증가
+            StartCoroutine(SpeedBuffTimer(data.duration));//버프지속시간
+        }
+        else if (data.itemType == ItemType.Heal)
+        {
+            PlayerHpChange(30);
+        }
+    }
+    private IEnumerator SpeedBuffTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        SpeedUpDown(4f); // 증가시킨 만큼 다시 빼기
+        isSpeedBuffed = false;
     }
     //플레이어 체력 num값 만큼 증가(-가능)
     public void PlayerHpChange(float num)
