@@ -25,100 +25,141 @@ G : 캐릭터 속성 바꾸기
 
 ├── Prefabs/		# 프리팹 리소스 폴더
 
-│   ├── 0514Test/		# 테스트용 프리팹 모음
+│
+├── 0514Test/		# 테스트용 프리팹 모음
 
-│   ├── Maps/
+│
+├── Maps/
 
-│   │   ├── Bridge01
+│
+│   ├── Bridge01
 
-│   │   ├── Map01~11
+│
+│   ├── Map01~11
 
-│   ├── Obstacle/
+│
+├── Obstacle/
 
-│   ├──	item		# 장애물 프리팹을 담은 폴더
+│
+├──	item		# 장애물 프리팹을 담은 폴더
 
-│   │   ├──Item_Heal.prefab
+│
+│   ├──Item_Heal.prefab
 
-│   │   ├── Item_Score.prefab
+│
+│   ├── Item_Score.prefab
 
-│   │   ├──  Item_Heal.prefab
+│
+│   ├──  Item_Heal.prefab
 
 ├── Scripts/		# 스크립트
 
-│   ├── Data/		 # 데이터 관련 구조체, enum
-
-│   │   ├── ItemDate.cs
-
-│   │   ├── ItemType.cs
+│
+├── Data/		 # 데이터 관련 구조체, enum
 
 │
-│   ├── Item/		# 아이템 관련 클래스
-
-│   │   ├── BaseItem.cs		# 아이템 추상 클래스
-
-│   │   ├── SpeedItem.cs		 # 속도 증가 아이템
-
-│   │   ├── HealItem.cs		# 체력 회복 아이템
-
-│   │   └── ScoreItem.cs		# 점수 증가 아이템
+│   ├── ItemDate.cs
 
 │
+│   ├── ItemType.cs
 
-│   ├── Ui/		# Ui 관련 스크립트
+│
+│
+├── Item/		# 아이템 관련 클래스
 
-│   │   ├── GameOver_UI.cs
+│
+│   ├── BaseItem.cs		# 아이템 추상 클래스
 
-│   │   ├── HomeUI.cs
+│
+│   ├── SpeedItem.cs		 # 속도 증가 아이템
 
-│   │   └── IngameUI.cs 
+│
+│   ├── HealItem.cs		# 체력 회복 아이템
 
-│   │   └── MenuUI.cs  
+│
+│   └── ScoreItem.cs		# 점수 증가 아이템
 
 │
 
-│   ├── Camera/
+│
+├── Ui/		# Ui 관련 스크립트
 
-│   │   └── FollowCamera.cs		# 플레이어 추적 카메라
+│
+│   ├── GameOver_UI.cs
+
+│
+│   ├── HomeUI.cs
+
+│
+│   └── IngameUI.cs 
+
+│
+│   └── MenuUI.cs  
 
 │
 
-│   └── Util/
+│
+├── Camera/
+
+│
+│   └── FollowCamera.cs		# 플레이어 추적 카메라
+
+│
+
+│
+└── Util/
 
 │       └── GameEnum.cs		# 아이템 타입 등 열거형 정의
 
 │
 
-│   ├── Core & 기능별 스크립트
+│
+├── Core & 기능별 스크립트
 
-│   │   ├── BaseController.cs		# 플레이어 기반 추상 스크립트
+│
+│   ├── BaseController.cs		# 플레이어 기반 추상 스크립트
 
-│   │   ├── Bglooper.cs		# 배경 루프 스크립트
+│
+│   ├── Bglooper.cs		# 배경 루프 스크립트
 
-│   │   ├── Bullet.cs		# 발사체
+│
+│   ├── Bullet.cs		# 발사체
 
-│   │   ├── Elemental.cs		# 속성 변경
+│
+│   ├── Elemental.cs		# 속성 변경
 
-│   │   ├── FollowCamera.cs		# 카메라 추적
+│
+│   ├── FollowCamera.cs		# 카메라 추적
 
-│   │   ├── FollowObstacleSpn.cs		# 장애물 스폰
+│
+│   ├── FollowObstacleSpn.cs		# 장애물 스폰
 
-│   │   ├── GamaManager.cs		# 게임 상태 관리(싱글턴)
+│
+│   ├── GamaManager.cs		# 게임 상태 관리(싱글턴)
 
-│   │   ├── Map.cs
+│
+│   ├── Map.cs
 
-│   │   ├── Obstacle.cs
+│
+│   ├── Obstacle.cs
 
-│   │   ├── ObstacleHandler.cs
+│
+│   ├── ObstacleHandler.cs
 
-│   │   ├── ObstacleSpawner.cs
+│
+│   ├── ObstacleSpawner.cs
 
-│   │   ├── Player.cs
+│
+│   ├── Player.cs
 
-│   │   ├── PoolManager.cs
+│
+│   ├── PoolManager.cs
 
-│   │   ├── Score.cs
+│
+│   ├── Score.cs
 
-│   │   ├── StartButton.cs
+│
+│   ├── StartButton.cs
 
 │
 
