@@ -88,6 +88,9 @@ G : 캐릭터 속성 바꾸기
 
 # 📌 게임 예시 화면
 
-[▶ 영상 보러가기](https://youtu.be/8fxAkkarwG0)
+## 🎮 게임 플레이 영상
+
+[![게임 플레이 썸네일](https://img.youtube.com/vi/8fxAkkarwG0/0.jpg)](https://youtu.be/8fxAkkarwG0)
+
 
 
