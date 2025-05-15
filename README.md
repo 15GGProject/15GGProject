@@ -21,6 +21,4 @@ G : 캐릭터 속성 바꾸기
 
 프로젝트 구조
 
-15GG_Project/
 
-<pre><code>15GG_Project/ ├── Prefabs/ # 프리팹 리소스 폴더 │ ├── 0514Test/ # 테스트용 프리팹 모음 │ ├── Maps/ # 맵 프리팹 모음 │ │ ├── Bridge01 │ │ └── Map01~11 │ ├── Obstacle/ # 장애물 프리팹 폴더 │ └── Item/ # 아이템 프리팹 폴더 │ ├── Item_Heal.prefab │ ├── Item_Score.prefab │ └── Item_Speed.prefab │ ├── Scripts/ # 스크립트 폴더 │ ├── Data/ # 데이터 구조체, enum │ │ ├── ItemDate.cs │ │ └── ItemType.cs │ └── Item/ # 아이템 관련 클래스 │ ├── BaseItem.cs # 아이템 추상 클래스 │ ├── SpeedItem.cs # 속도 증가 아이템 │ ├── HealItem.cs # 체력 회복 아이템 │ └── ScoreItem.cs # 점수 증가 아이템 </code></pre>
