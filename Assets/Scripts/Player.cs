@@ -23,16 +23,16 @@ public class Player : BaseController
     protected int level { get; private set; } = 1;
     protected float maxExperiencePoint { get; private set; } = 100;
     protected float currentExperiencePoint { get; private set; } = 0;
-    protected int gold { get; private set; } = 0;
+    public int gold { get; private set; } = 0;
 
     public bool isFire { get; private set; } = false;
     private bool isInvincible = false;
 
-    private bool isSpeedBuffed = false; // ½ºÀcµå ¹öÇÁ »óÅÂ À¯¹«
+    private bool isSpeedBuffed = false; // ìŠ¤cë“œ ë²„í”„ ìƒíƒœ ìœ ë¬´
 
     public void Start()
     {
-        GameManager.Instance.RegisterPlayer(this); // GameManager¿¡ ÀÌ Player ÀÎ½ºÅÏ½º¸¦ µî·Ï
+        GameManager.Instance.RegisterPlayer(this); // GameManagerì— ì´ Player ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë“±ë¡
         base.Start();
         playerAnimator = GetComponentInChildren<Animator>();
         playerAnimator.SetBool("IsRun", true);
@@ -43,41 +43,41 @@ public class Player : BaseController
 
         AttackTime = coolDownAttack;
 
-        GameManager.Instance.RegisterPlayer(this); // GameManager¿¡ ÀÌ Player ÀÎ½ºÅÏ½º¸¦ µî·Ï
+        GameManager.Instance.RegisterPlayer(this); // GameManagerì— ì´ Player ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë“±ë¡
     }
     public void Update()
     {
-        //½ºÆäÀÌ½º¹Ù ·Î Á¡ÇÁ
+        //ìŠ¤í˜ì´ìŠ¤ë°” ë¡œ ì í”„
         Jump();
 
-        //ÄÁÆ®·Ñ Å°·Î ½½¶óÀÌµù
+        //ì»¨íŠ¸ë¡¤ í‚¤ë¡œ ìŠ¬ë¼ì´ë”©
         Silde();
 
-        //¶¥¿¡ ÀÖÀ¸¸é ÀÚµ¿ÀÌµ¿
+        //ë•…ì— ìˆìœ¼ë©´ ìë™ì´ë™
         if (IsGrounded()) AutoMove();
 
-        //ÀÏÁ¤ ½Ã°£ ¸¶´Ù °ø°İ °¡´ÉÇÏ°Ô
+        //ì¼ì • ì‹œê°„ ë§ˆë‹¤ ê³µê²© ê°€ëŠ¥í•˜ê²Œ
         AttackTime += Time.deltaTime;
         //Debug.Log(AttackTime);
-        //¸¶¿ì½º ¿ìÅ¬¸¯À¸·Î °ø°İ
+        //ë§ˆìš°ìŠ¤ ìš°í´ë¦­ìœ¼ë¡œ ê³µê²©
         if (Input.GetKeyDown(KeyCode.Mouse0) && AttackTime >= coolDownAttack)
         {
             Attack(SetClickDirection());
             AttackTime = 0;
         }
-        //g·Î ¼Ó¼º ÀüÈ¯
+        //gë¡œ ì†ì„± ì „í™˜
         if (Input.GetKeyDown(KeyCode.G))
         {
             isFire = Elemental.ChangeAllElemental(spriteRenderer, isFire);
         }
-        //¹«Àû Å×½ºÆ®
+        //ë¬´ì  í…ŒìŠ¤íŠ¸
         if(Input.GetKeyDown(KeyCode.K))
         {
             ActivateInvincibility(3f);
         }
     }
 
-    //¶¥¿¡ ºÙ¾îÀÖÀ¸¸é Á¡ÇÁ °¡´É + Á¡ÇÁ È½¼ö ÃÊ±âÈ­
+    //ë•…ì— ë¶™ì–´ìˆìœ¼ë©´ ì í”„ ê°€ëŠ¥ + ì í”„ íšŸìˆ˜ ì´ˆê¸°í™”
     public override void Jump()
     {
         base.Jump();
@@ -92,7 +92,7 @@ public class Player : BaseController
         }
     }
 
-    //¶¥¿¡ ºÙ¾îÀÖÀ¸¸é ½½¶óÀÌµù °¡´É
+    //ë•…ì— ë¶™ì–´ìˆìœ¼ë©´ ìŠ¬ë¼ì´ë”© ê°€ëŠ¥
     public void Silde()
     {
         if (IsGrounded() && Input.GetKey(KeyCode.LeftControl))
@@ -109,12 +109,12 @@ public class Player : BaseController
         }
     }
 
-    //¸¶¿ì½º À§Ä¡ ÁÂÇ¥¿Í ÇÃ·¹ÀÌ¾î À§Ä¡¸¦ ¿¬°áÇÑ ¹éÅÍ°ªÀÇ ³ë¸Ö¶óÀÌÁî °ªÀ» ±¸ÇØÁÖ´Â ÇÔ¼ö
+    //ë§ˆìš°ìŠ¤ ìœ„ì¹˜ ì¢Œí‘œì™€ í”Œë ˆì´ì–´ ìœ„ì¹˜ë¥¼ ì—°ê²°í•œ ë°±í„°ê°’ì˜ ë…¸ë©€ë¼ì´ì¦ˆ ê°’ì„ êµ¬í•´ì£¼ëŠ” í•¨ìˆ˜
     public Vector2 SetClickDirection()
     {
         Vector2 shotDirection = Vector2.zero;
 
-        //¸¶¿ì½º Æ÷Áö¼ÇÀ» ¿ùµå ÁÂÇ¥·Î º¯È¯ÇÏ±â
+        //ë§ˆìš°ìŠ¤ í¬ì§€ì…˜ì„ ì›”ë“œ ì¢Œí‘œë¡œ ë³€í™˜í•˜ê¸°
         Vector3 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         //Debug.Log(mousePos);
@@ -123,7 +123,7 @@ public class Player : BaseController
         return shotDirection.normalized;
     }
 
-    //¿ÀºêÁ§Æ® Ç®¿¡¼­ ÃÑ¾Ë °¡Á®¿Í¼­ ½î±â
+    //ì˜¤ë¸Œì íŠ¸ í’€ì—ì„œ ì´ì•Œ ê°€ì ¸ì™€ì„œ ì˜ê¸°
     public void Attack(Vector2 vector)
     {
         GameObject bullet = poolManager.GetBullet();
@@ -145,7 +145,7 @@ public class Player : BaseController
         }
     }
 
-    //³Ö¾îÁØ ½Ã°£¿¡ µû¶ó ¹«Àû½Ã°£À» °É¾îÁÖ´Â ÇÔ¼ö
+    //ë„£ì–´ì¤€ ì‹œê°„ì— ë”°ë¼ ë¬´ì ì‹œê°„ì„ ê±¸ì–´ì£¼ëŠ” í•¨ìˆ˜
     public void ActivateInvincibility(float duration)
     {
         if (!isInvincible)
@@ -154,35 +154,35 @@ public class Player : BaseController
         }
     }
 
-    //¹«Àû ÄÚ·çÆ¾
+    //ë¬´ì  ì½”ë£¨í‹´
     private IEnumerator InvincibilityCoroutine(float duration)
     {
         isInvincible = true;
         //Invincibility(10)
         this.gameObject.layer = 10;
-        Debug.Log("¹«Àû »óÅÂ ½ÃÀÛ"+ this.gameObject.layer);
+        //Debug.Log("ë¬´ì  ìƒíƒœ ì‹œì‘"+ this.gameObject.layer);
 
         float elapsed = 0f;
         bool visible = true;
-        float blinkInterval = 0.1f; //±ôºıÀÌ´Â °£°İ(0.1ÃÊ¸¶´Ù)
+        float blinkInterval = 0.1f; //ê¹œë¹¡ì´ëŠ” ê°„ê²©(0.1ì´ˆë§ˆë‹¤)
 
-        // ±ôºıÀÓ ·çÇÁ (¹«Àû ½Ã°£ µ¿¾È ¹İº¹)
+        // ê¹œë¹¡ì„ ë£¨í”„ (ë¬´ì  ì‹œê°„ ë™ì•ˆ ë°˜ë³µ)
         while (elapsed < duration)
         {
             elapsed += blinkInterval;
-            Debug.Log(elapsed);
+            //Debug.Log(elapsed);
 
-            // ¾ËÆÄ°ª º¯°æ
+            // ì•ŒíŒŒê°’ ë³€ê²½
             Color color = spriteRenderer.color;
             color.a = visible ? 0.2f : 1f;
             spriteRenderer.color = color;
 
             visible = !visible;
 
-            yield return new WaitForSeconds(blinkInterval); // ±ôºıÀÌ´Â °£°İ (0.1ÃÊ¸¶´Ù)
+            yield return new WaitForSeconds(blinkInterval); // ê¹œë¹¡ì´ëŠ” ê°„ê²© (0.1ì´ˆë§ˆë‹¤)
         }
 
-        // ¿ø·¡´ë·Î º¹±¸
+        // ì›ë˜ëŒ€ë¡œ ë³µêµ¬
         Color resetColor = spriteRenderer.color;
         resetColor.a = 1f;
         spriteRenderer.color = resetColor;
@@ -190,28 +190,28 @@ public class Player : BaseController
         isInvincible = false;
         //Player(9)
         this.gameObject.layer = 9;
-        Debug.Log("¹«Àû »óÅÂ Á¾·á" + this.gameObject.layer);
+        //Debug.Log("ë¬´ì  ìƒíƒœ ì¢…ë£Œ" + this.gameObject.layer);
     }
 
-    //°ñµå Áõ°¨
+    //ê³¨ë“œ ì¦ê°
     public void GoldUpDown(int num)
     {
         gold += num;
     }
-    //°æÇèÄ¡ Áõ°¨(ÇÊ¿ä¾øÀ» °¡´É¼º ³ôÀ½)
+    //ê²½í—˜ì¹˜ ì¦ê°(í•„ìš”ì—†ì„ ê°€ëŠ¥ì„± ë†’ìŒ)
     public void ExperiencePointUpDown(float num)
     {
         currentExperiencePoint += num;
 
         while (true)
         {
-            //ÇöÀç °æÇèÄ¡°¡ ÃÖ´ë °æÇèÄ¡ ÀÌ»óÀÌ¶ó¸é ·¹º§ ¿Ã¸®°í ±×¸¸Å­ »©ÁÜ
+            //í˜„ì¬ ê²½í—˜ì¹˜ê°€ ìµœëŒ€ ê²½í—˜ì¹˜ ì´ìƒì´ë¼ë©´ ë ˆë²¨ ì˜¬ë¦¬ê³  ê·¸ë§Œí¼ ë¹¼ì¤Œ
             if (currentExperiencePoint >= maxExperiencePoint)
             {
                 level++;
                 currentExperiencePoint -= maxExperiencePoint;
             }
-            //0º¸´Ù ÀÛ´Ù¸é ´Ù½Ã 0À¸·Î
+            //0ë³´ë‹¤ ì‘ë‹¤ë©´ ë‹¤ì‹œ 0ìœ¼ë¡œ
             else if (currentExperiencePoint < 0)
             {
                 currentExperiencePoint = 0;
@@ -222,32 +222,44 @@ public class Player : BaseController
             }
         }
     }
-    //°ø°İ·Â Áõ°¨(ÇÊ¿ä¾øÀ»µí)
+    //ê³µê²©ë ¥ ì¦ê°(í•„ìš”ì—†ì„ë“¯)
     public void AttackPowerUpDown(float num)
     {
         attackPower += num;
     }
-    public void ApplyItemEffect(ItemDate data)
+    public void ApplyItemEffect(ItemDate data, GameObject itemObj)
     {
-        // ¹öÇÁ Ã³¸®
+        // ë²„í”„ ì²˜ë¦¬
         if (data.itemType == ItemType.Speed)
         {
-            isSpeedBuffed = true; // ½ºÇÇµå ¹öÇÁ»óÅÂº¯°æ
-            SpeedUpDown(-4f); // ¿¹: ±âº» 8¿¡¼­ 12·Î Áõ°¡
-            StartCoroutine(SpeedBuffTimer(data.duration));//¹öÇÁÁö¼Ó½Ã°£
+            StartCoroutine(SetActive(itemObj));
+
+            ActivateInvincibility(5f);
+            StartCoroutine(SpeedBuffTimer(data.duration));//ë²„í”„ì§€ì†ì‹œê°„
+
+            if (isSpeedBuffed) return;
+
+            isSpeedBuffed = true;
+
+
+            SpeedUpDown(4f); // ì˜ˆ: ê¸°ë³¸ 8ì—ì„œ 12ë¡œ ì¦ê°€
         }
         else if (data.itemType == ItemType.Heal)
         {
+            StartCoroutine(SetActive(itemObj));
             PlayerHpChange(30);
         }
     }
     private IEnumerator SpeedBuffTimer(float duration)
     {
         yield return new WaitForSeconds(duration);
-        SpeedUpDown(4f); // Áõ°¡½ÃÅ² ¸¸Å­ ´Ù½Ã »©±â
+        if (isSpeedBuffed)
+        {
+            SpeedUpDown(-4f); // ì¦ê°€ì‹œí‚¨ ë§Œí¼ ë‹¤ì‹œ ë¹¼ê¸°
+        }
         isSpeedBuffed = false;
     }
-    //ÇÃ·¹ÀÌ¾î Ã¼·Â num°ª ¸¸Å­ Áõ°¡(-°¡´É)
+    //í”Œë ˆì´ì–´ ì²´ë ¥ numê°’ ë§Œí¼ ì¦ê°€(-ê°€ëŠ¥)
     public void PlayerHpChange(float num)
     {
         this.currentHp += num;
@@ -260,7 +272,7 @@ public class Player : BaseController
             currentHp = 0;
         }
     }
-    //ÇÃ·¹ÀÌ¾î °ø°İ ¼Óµµ Áõ°¨
+    //í”Œë ˆì´ì–´ ê³µê²© ì†ë„ ì¦ê°
     public void AttackSpeedUpDown(float num)
     {
         coolDownAttack += num;
@@ -269,13 +281,18 @@ public class Player : BaseController
             coolDownAttack = 0f;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        //±¸Á¶¹°¿¡ ´ê¾ÒÀ»¶§ ¹«Àû½Ã°£ 
+        //êµ¬ì¡°ë¬¼ì— ë‹¿ì•˜ì„ë•Œ ë¬´ì ì‹œê°„ 
         if(collision.gameObject.layer == 8 && this.gameObject.layer == 9)
         {
             PlayerHpChange(-5f);
             ActivateInvincibility(1f);
         }
+    }
+    private IEnumerator SetActive(GameObject item)
+    {
+        yield return new WaitForSeconds(2f);
+        item.SetActive(true);
     }
 }
